@@ -1,0 +1,8 @@
+# FOR_CLAY.txt -- BDP P5-Bridge SHA-256 manifest
+# Morning Star Project / Theorema Aureum 143
+# Note: BDP_PhaseReversal.lean contains anomaly_291 which uses native_decide
+#       -> Lean.reduceTrust (non-classical-trio for that one theorem)
+#       All other theorems: {propext, Classical.choice, Quot.sound}
+
+571fadc818d826d7774597f7ebb5fd3e905d2da6248aa370302fa1ad7207aa05  Towers/BDP/BDP_PhaseReversal.lean
+3b361452f0ab86155d84760096ea6a8495d36dd7b201a8f1e1b5115a010e38f3  lakefile.lean
