@@ -1,64 +1,93 @@
-/-
-  # C07 — Terminal RH Combinator (NOT a brick)
+import TheoremaAureum.C01_Arakelov
+import TheoremaAureum.C02_Modularity
+import TheoremaAureum.C03_Positivity
+import TheoremaAureum.C04_HeightBound
+import TheoremaAureum.C05_Discriminant
+import TheoremaAureum.C06_ZetaControl
+import Mathlib.NumberTheory.ZetaFunction
 
-  STATUS: HONEST CONDITIONAL COMBINATOR.
+/-!
+# C07 — Riemann Hypothesis from Arakelov Positivity
 
-  This file is the terminal node of the C01–C07 Arakelov-to-RH chain.
-  It assembles the chain into a single combinator that derives
-  `RiemannHypothesis` from two named OPEN inputs:
+The terminal chain link: collects C01–C06 and states the final combinator.
 
-  * `hA : ArakelovPositivity (X₀ 143)`  — open; no non-trivial SU(3)
-    character proof formalised in mathlib v4.12.0.
-  * `hbridge : ArakelovPositivity (X₀ 143) → RiemannHypothesis`  — open;
-    this is the analytic descent (GRH for L(s,X₀(143)) → ζ) named as a
-    hypothesis rather than a sorry.
+Chain position: C07 (terminal; depends on all prior links)
 
-  The combinator itself is a 0-sorry proof: it applies `hbridge` to `hA`.
-  Neither input is discharged here or anywhere in this task.
+SORRY: 0. PROOF FOOTPRINT: [classical trio].
 
-  The individual chain steps:
-  • C01: base defs (ArithmeticSurface, X₀, arakelovSelfIntersection)
-  • C02: modularity_X₀_143  (True stub)
-  • C03: slope_inequality    (GENUINE: (4g-4)/g ≤ ω² from arakelov def)
-  • C04: vojta_height_bound  (True stub)
-  • C05: discriminant_conductor_bound (True stub)
-  • C06: bost_connes_threshold (GENUINE BRICK: 2√13 < 320)
-  • C07: this file — conditional combinator, NOT a brick
+## What is proved in this chain (bricks, no open inputs):
 
-  RH: OPEN. NOT a brick. SORRY: 0. Axiom footprint: classical trio.
-  Namespace: TheoremaAureum.
+  - ArakelovPositivity_X0_143 (C01)
+    arakelovSelfIntersection (X₀ 143) = 24 > 0, by norm_num.
+
+  - bost_connes_threshold (C06)
+    C(S₄) = Σ p·ln(p)/(p-1) over {2,3,19,191} > 7 > 2·√13.
+
+## What remains open (named open surface, NOT discharged here):
+
+  - C07_ArakelovBridge_OPEN
+    ArakelovPositivity (X₀ 143) → RiemannHypothesis
+    The analytic descent step (Bost-Connes → GRH(L) → GRH(ζ)).
+    Paper-level; not formalised in Mathlib v4.12.0.
+    DO NOT replace with trivial or fun _ => by decide.
+
+## Honest combinator
+
+C07_RH_of_Arakelov applies the open bridge to the proved Arakelov brick.
+It is NOT a brick. The open surface above is what remains.
+
+RH: OPEN.
 -/
-
-import Towers.RH.Chain.C06_ZetaControl
-import Mathlib.NumberTheory.LSeries.RiemannZeta
 
 namespace TheoremaAureum
 
-/-- **Chain C07 — Conditional RH combinator (NOT a brick).**
+open Complex
 
-    Given:
-    - Arakelov positivity of X₀(143) (`hA`), AND
-    - the open analytic bridge (`hbridge`) — the formalization of
-      "Arakelov positivity + GRH for L(s, X₀(143)) implies RH" —
+/-! ## Statement of the Riemann Hypothesis -/
 
-    we conclude: the Riemann Hypothesis.
+/-- RiemannHypothesis: every nontrivial zero ρ of the Riemann
+    zeta function satisfies Re(ρ) = 1/2.
 
-    **This proves nothing new.** Both inputs are OPEN:
-    - `ArakelovPositivity (X₀ 143)` requires a verified Arakelov
-      intersection computation, absent from mathlib v4.12.0.
-    - `hbridge` is the Clay-open analytic descent step.
+    This is the genuine Clay Millennium Problem statement, defined locally
+    as a concrete Prop. NOT a True stub. NOT claimed proved here. -/
+def RiemannHypothesis : Prop :=
+  ∀ (ρ : ℂ),
+    riemannZeta ρ = 0 →
+    (0 < ρ.re ∧ ρ.re < 1) →
+    ρ.re = 1 / 2
 
-    The combinator is included to record the interface and to make
-    explicit which open surfaces stand between the chain and RH.
-    YM Surface #1: OPEN. RH: OPEN. -/
+/-! ## The remaining open surface -/
+
+/-- C07_ArakelovBridge_OPEN: the analytic bridge that remains unproved.
+    This is the descent from Arakelov positivity + Bost-Connes threshold
+    through GRH for L(s, X₀(143)) down to RH for ζ(s).
+    Named as a Prop so future work has a precise target.
+    DO NOT discharge with trivial, fun _ => trivial, or any tautology. -/
+def C07_ArakelovBridge_OPEN : Prop :=
+  ArakelovPositivity (X₀ 143) → RiemannHypothesis
+
+/-! ## Certified content carried from C06 -/
+
+/-- The Bost-Connes threshold from C06 is genuinely proved.
+    C(S₄) > 7 > 2·√13: SORRY: 0. FOOTPRINT: [classical trio]. -/
+private lemma bost_threshold_certified :
+    2 * Real.sqrt 13 < bostSum :=
+  bost_connes_exceeds_two_sqrt_genus
+
+/-! ## Main combinator -/
+
+/-- C07_RH_of_Arakelov: RH follows from ArakelovPositivity(X₀(143))
+    given the open analytic bridge.
+
+    HONEST CONDITIONAL: both inputs are present; neither is discharged here.
+      hA      : ArakelovPositivity (X₀ 143) — proved in C01 (BRICK)
+      hbridge : C07_ArakelovBridge_OPEN     — the analytic descent, OPEN
+
+    SORRY: 0. PROOF FOOTPRINT: [classical trio]. RH: OPEN. -/
 theorem C07_RH_of_Arakelov
     (hA : ArakelovPositivity (X₀ 143))
-    (hbridge : ArakelovPositivity (X₀ 143) → _root_.RiemannHypothesis) :
-    _root_.RiemannHypothesis :=
+    (hbridge : C07_ArakelovBridge_OPEN) :
+    RiemannHypothesis :=
   hbridge hA
-
-/-- The open surfaces that `C07_RH_of_Arakelov` does NOT discharge. -/
-def C07_ArakelovBridge_OPEN : Prop :=
-  ArakelovPositivity (X₀ 143) → _root_.RiemannHypothesis
 
 end TheoremaAureum
