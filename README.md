@@ -1,24 +1,42 @@
-# rh-p5-bridge-14 — Morning Star Project
+# RH P5-Bridge-14 — Morning Star Project (Theorema Aureum 143)
 
-**Status: OPEN** — Riemann Hypothesis is unproved.
+BDP Phase Reversal bridge supporting the RH tower.
+Mathlib v4.12.0.
 
-P5 Bridge and 14 exceptional primes — supporting scaffold for the RH tower.
+## What is here
 
-## Contents
+`Towers/BDP/BDP_PhaseReversal.lean` — the P5 bridge file.
 
-- `ZeroDensity.lean` — N(σ,T) strip-counting function + N_monotone_in_sigma (BRICK).
-- `ZProtocolBridge.lean` — Z-Protocol honesty bridge (rate_le_one; NOT a brick).
-- `GrowthContradiction.lean` — honest conditional reduction skeleton (NOT a brick).
+This proves equidistribution properties of alpha_0 = 299 + pi/10
+relative to the S4 prime set {2, 3, 19, 191} via 15-digit and
+30-digit Machin-series bounds.
 
-## Honesty
+## Proved theorems
 
-No claim is made that any finite Z-Protocol numerical check closes the RH conjecture.
-`rate_le_one` proves only that the ratio passed/total ≤ 1.
-The 14 exceptional primes bridge and P5 result are OPEN.
+| Theorem | Description | Axiom footprint |
+|---------|-------------|-----------------|
+| `lemma1_two_halves_error_bound` | fracDist for S4 primes vs alpha_0 | classical trio |
+| `Cert_lemma2` | 15-digit Machin bound for P5 bridge | classical trio |
+| `Cert_llm_trunc` | LLM truncation certificate | classical trio |
+| `Cert_phase_reversal` | chi(1/p5)=13 < chi(fracDist p5)=14 | classical trio |
+| `Cert_m_boundary` | m boundary = 44 | classical trio |
+| `anomaly_291` | |191*kappa^16 - p5 - k*pi| bound | **Lean.reduceTrust** |
 
-## Toolchain
+## Axiom note
 
-```
-leanprover/lean4:v4.12.0
-mathlib: v4.12.0
-```
+`anomaly_291` uses `native_decide` and therefore depends on
+`Lean.reduceTrust` in addition to the classical trio. It is NOT
+a classical-trio proof. All other theorems in this file ARE
+classical trio: {propext, Classical.choice, Quot.sound}.
+
+## Connection to RH
+
+S4 primes {2,3,19,191} appear in both this file and C14_BC6SpectralGap.lean
+(C_S14_143 = 8.62925). BDP equidistribution feeds spectral gap estimates
+but does NOT close BC6SelbergTrace_OPEN (which requires the Selberg
+trace formula, absent from Mathlib v4.12.0).
+
+## Honesty statement
+
+This repository does **not** claim to prove RH.
+The P5 bridge is supporting numerical evidence, not a proof.
