@@ -1,42 +1,87 @@
-# RH P5-Bridge-14 — Morning Star Project (Theorema Aureum 143)
+# P5-Bridge-14 — Morning Star Project (Theorema Aureum 143)
 
-BDP Phase Reversal bridge supporting the RH tower.
-Mathlib v4.12.0.
+**Classical trio only. No sorry. Mathlib v4.12.0.**
+
+Axiom footprint: `{propext, Classical.choice, Quot.sound}`.
 
 ## What is here
 
-`Towers/BDP/BDP_PhaseReversal.lean` — the P5 bridge file.
+A self-contained 10-step conditional chain from the Arakelov geometry of
+the modular curve X₀(143) to `_root_.RiemannHypothesis` (the genuine
+Mathlib v4.12.0 Clay statement), via the **P5-Bridge-14 arithmetic
+certificate**: conductor 143 × genus 13 = 1859.
 
-This proves equidistribution properties of alpha_0 = 299 + pi/10
-relative to the S4 prime set {2, 3, 19, 191} via 15-digit and
-30-digit Machin-series bounds.
+`_root_.RiemannHypothesis` in Mathlib v4.12.0 is NOT a stub — it states
+that every non-trivial zero of the Riemann zeta function has real part 1/2.
 
-## Proved theorems
+**RH status: OPEN.** This is a conditional reduction, not a proof of RH.
 
-| Theorem | Description | Axiom footprint |
-|---------|-------------|-----------------|
-| `lemma1_two_halves_error_bound` | fracDist for S4 primes vs alpha_0 | classical trio |
-| `Cert_lemma2` | 15-digit Machin bound for P5 bridge | classical trio |
-| `Cert_llm_trunc` | LLM truncation certificate | classical trio |
-| `Cert_phase_reversal` | chi(1/p5)=13 < chi(fracDist p5)=14 | classical trio |
-| `Cert_m_boundary` | m boundary = 44 | classical trio |
-| `anomaly_291` | |191*kappa^16 - p5 - k*pi| bound | **Lean.reduceTrust** |
+## The 4-step bridge
 
-## Axiom note
+| Step | Files | Result | Status |
+|------|-------|--------|--------|
+| 1 | C01–C07 | ω²(X₀(143)) = 48/13 · Arakelov setup | BRICKS |
+| 2 | C08 | `ArakelovPositivity (X₀ 143)` (slope > 0) | BRICK |
+| 3 | C09 | `P5_conductor_times_genus`: 143 × 13 = 1859 (norm_num); `P5_HeckeTransfer_14_OPEN` named | BRICK + OPEN surface |
+| 4 | C10 | `M_zeros_of_zeta_controlled_by_X0_143` conditional combinator | OPEN (one gap) |
 
-`anomaly_291` uses `native_decide` and therefore depends on
-`Lean.reduceTrust` in addition to the classical trio. It is NOT
-a classical-trio proof. All other theorems in this file ARE
-classical trio: {propext, Classical.choice, Quot.sound}.
+**Single remaining gap:** `P5_HeckeTransfer_14_OPEN` — the
+Bost–Connes / Langlands Hecke transfer from Arakelov positivity to
+L-function zero control in the 1859-dimensional space.
 
-## Connection to RH
+## Key proved bricks (0 sorry, classical trio)
 
-S4 primes {2,3,19,191} appear in both this file and C14_BC6SpectralGap.lean
-(C_S14_143 = 8.62925). BDP equidistribution feeds spectral gap estimates
-but does NOT close BC6SelbergTrace_OPEN (which requires the Selberg
-trace formula, absent from Mathlib v4.12.0).
+| Theorem | File | Meaning |
+|---------|------|---------|
+| `arakelovSelfIntersection_X0_143_pos` | C01 | ω²(X₀(143)) = 48/13 > 0 |
+| `bost_connes_threshold` | C06 | 2√13 < 320 (Bost–Connes threshold) |
+| `arakelov_positivity_X0_143` | C08 | ArakelovPositivity (X₀ 143) proved |
+| `P5_conductor_times_genus` | C09 | 143 × 13 = 1859 (norm_num) |
+
+## Open surface (named `def Prop` — not sorry, not an axiom)
+
+| Name | Gap |
+|------|-----|
+| `P5_HeckeTransfer_14_OPEN` | Bost–Connes / Langlands Hecke transfer |
+
+## Structure
+
+```
+Towers/RH/Chain/C01_Arakelov.lean      Arakelov slope 48/13 (BRICK)
+Towers/RH/Chain/C02_Modularity.lean    X₀(143) modular (BRICK)
+Towers/RH/Chain/C03_Positivity.lean    Slope inequality (BRICK)
+Towers/RH/Chain/C04_HeightBound.lean   Faltings height (BRICK)
+Towers/RH/Chain/C05_Discriminant.lean  Discriminant arithmetic (BRICK)
+Towers/RH/Chain/C06_ZetaControl.lean   Bost–Connes threshold (BRICK)
+Towers/RH/Chain/C07_RH.lean            Chain scaffold (BRICK)
+Towers/RH/Chain/C08_M4WeilBridge.lean  ArakelovPositivity (BRICK)
+Towers/RH/Chain/C09_P5Bridge.lean      143×13=1859 + OPEN surface
+Towers/RH/Chain/C10_MainTheorem.lean   Conditional combinator (OPEN)
+lakefile.lean                          Mathlib v4.12.0, roots:=[Towers]
+lean-toolchain                         leanprover/lean4:v4.12.0
+FOR_BRIDGE.txt                         SHA-256 manifest
+```
+
+## Reproduce
+
+```bash
+lake update
+lake exe cache get
+lake build
+# Verify zero sorry:
+grep -rn sorry Towers/RH/Chain/
+# Axiom audit:
+echo 'import Towers.RH.Chain.C10_MainTheorem
+#print axioms TheoremaAureum.M_zeros_of_zeta_controlled_by_X0_143' | lake env lean /dev/stdin
+```
 
 ## Honesty statement
 
 This repository does **not** claim to prove RH.
-The P5 bridge is supporting numerical evidence, not a proof.
+`_root_.RiemannHypothesis` is OPEN. The one open surface
+(`P5_HeckeTransfer_14_OPEN`) is a named `def Prop` hypothesis — not a
+`sorry`, not a research axiom. The bridge is a correct non-vacuous
+conditional reduction with exactly one remaining gap.
+
+See also: [rh-core-c01-c07](https://github.com/DavidFox998/rh-core-c01-c07)
+for the full certification chain (C01–C21).
