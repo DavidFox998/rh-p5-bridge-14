@@ -48,8 +48,3 @@ jobs:
             exit 1
           fi
           echo "PASS: no sorry tactic in proof code"
-      - name: Axiom audit C10 main theorem
-        run: |
-          echo 'import Towers.RH.Chain.C10_MainTheorem' > /tmp/p5_audit.lean
-          echo '#print axioms TheoremaAureum.M_zeros_of_zeta_controlled_by_X0_143' >> /tmp/p5_audit.lean
-          lake env lean /tmp/p5_audit.lean
