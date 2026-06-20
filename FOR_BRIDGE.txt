@@ -13,3 +13,4 @@ de5489d7268bcb1ad3a08da73ee437ef8fd5c59dad9f72b84011c598d1a54e4c  Towers/RH/Chai
 336c0ec27a4091d3471f84957c881e3aa777e2810ff3b25f823b634087b1e90b  Towers/RH/Chain/C08_M4WeilBridge.lean
 4130441c14fe66875ad5a7a3403c3cb0bf46baf69055117ab67553f9522cf309  Towers/RH/Chain/C09_P5Bridge.lean
 40209b53521eb27c447d376d7f6cb6cf8d0d7c94ddcba42f082fd16a201ba1b7  Towers/RH/Chain/C10_MainTheorem.lean
+# Re-verified: 2026-06-20
