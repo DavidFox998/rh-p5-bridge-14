@@ -1,4 +1,4 @@
-name: Lean CI
+name: Lean CI (P5-Bridge-14)
 
 on:
   push:
@@ -35,3 +35,26 @@ jobs:
 
       - name: lake build
         run: lake build
+
+      - name: Check zero sorry
+        run: |
+          FOUND=$(grep -rn --include='*.lean' '\bsorry\b' \
+                  Towers/RH/Chain/ 2>/dev/null \
+                  | grep -v '\-\-.*sorry' \
+                  | grep -v 'NOT a sorry\|not a sorry\|[Nn]o.*sorry\|0 sorry\|sorry = 0\|SORRY: 0\|zero sorry' \
+                  | grep -v 'sorry-free\|no raw.*sorry\|without sorry' \
+                  | grep -v '`sorry`\|NOT sorry\|NO sorry\|0-sorry' || true)
+          if [ -n "$FOUND" ]; then
+            echo "FAIL: sorry found in proof code:"
+            echo "$FOUND"
+            exit 1
+          fi
+          echo "PASS: no sorry in proof code"
+
+      - name: Axiom audit C10 main theorem
+        run: |
+          cat > /tmp/p5_audit.lean << 'LEANEOF'
+import Towers.RH.Chain.C10_MainTheorem
+#print axioms TheoremaAureum.M_zeros_of_zeta_controlled_by_X0_143
+LEANEOF
+          lake env lean /tmp/p5_audit.lean
