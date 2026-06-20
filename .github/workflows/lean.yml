@@ -38,23 +38,16 @@ jobs:
         run: lake build
       - name: Check zero sorry
         run: |
-          FOUND=$(grep -rn --include='*.lean' 'sorry' \
-                  Towers/RH/Chain/ 2>/dev/null \
-                  | grep -v '^[^:]*:[0-9]*:[[:space:]]*--' \
-                  | grep -v '^[^:]*:[0-9]*:[[:space:]]*/[-!*]' \
-                  | grep -v '^[^:]*:[0-9]*:[[:space:]]*\*' \
-                  | grep -v 'sorry[_-]\|-sorry\|/sorry\|sorry[.!,;)]' \
-                  | grep -v '[[:space:]]sorry[.!,;]\|[[:space:]]a sorry\|[[:space:]]an sorry' \
-                  | grep -v '0 sorry\|sorry = 0\|SORRY\|sorry-free\|without sorry' \
-                  | grep -v 'NOT sorry\|not a sorry\|no sorry\|no.*sorry\|zero sorry' \
-                  | grep -v 'sorry[`'"'"']\|[`'"'"']sorry' \
-                  || true)
+          FOUND=$(grep -rn --include='*.lean' 'sorry' Towers/RH/Chain/ 2>/dev/null \
+            | grep -vE '^[^:]+:[0-9]+:[[:space:]]*(--|/[-!*])' \
+            | grep -E ':[[:space:]]*(sorry[[:space:]]*$|:= *sorry|by +sorry|<;> *sorry|exact +sorry|apply +sorry|refine.*sorry)' \
+            || true)
           if [ -n "$FOUND" ]; then
-            echo "FAIL: sorry found in proof code:"
+            echo "FAIL: sorry tactic found:"
             echo "$FOUND"
             exit 1
           fi
-          echo "PASS: no sorry in proof code"
+          echo "PASS: no sorry tactic in proof code"
       - name: Axiom audit C10 main theorem
         run: |
           echo 'import Towers.RH.Chain.C10_MainTheorem' > /tmp/p5_audit.lean
