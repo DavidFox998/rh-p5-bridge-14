@@ -19,7 +19,7 @@
   | 3 | C06 | 2√13 < 320 (Bost–Connes threshold)     | BRICK: bost_connes_threshold |
   | 4 | C08 | ArakelovPositivity (X₀ 143) — ω²>0      | BRICK: arakelov_positivity_X0_143 |
   | 5 | C09 | (143 : ℕ) * 13 = 1859 [CLOSED]         | BRICK: P5_conductor_times_genus |
-  | — | C09 | Langlands descent via 2π/7             | OPEN: P5_LanglandsDescent_2pi7_OPEN |
+  | — | C09 | Langlands descent via 2π/7             | OPEN: P5_LanglandsDescent_2pi7 |
   | 6 | C10 | _root_.RiemannHypothesis               | CONDITIONAL: M_zeros_of_zeta_controlled |
 
   ## Open debt: exactly one surface
@@ -27,7 +27,7 @@
   After discharging all proved bricks (C01, C03, C06, C08, C09), the remaining
   open debt is exactly:
 
-    `P5_LanglandsDescent_2pi7_OPEN`:
+    `P5_LanglandsDescent_2pi7`:
       (143 : ℕ) * 13 = 1859 → ArakelovPositivity (X₀ 143) → RiemannHypothesis
 
   The arithmetic part (conductor × genus = 1859, boundary at p₇) is CLOSED.
@@ -37,7 +37,7 @@
 
   ## Part 1 — OPEN surface: `M_LanglandsDescent_Surface_OPEN`
 
-  Aliases `P5_LanglandsDescent_2pi7_OPEN` as the named "main theorem surface".
+  Aliases `P5_LanglandsDescent_2pi7` as the named "main theorem surface".
   This is the single remaining gap between the C-chain's proved bricks and
   `_root_.RiemannHypothesis`.
 
@@ -46,7 +46,7 @@
   ## Part 2 — Main theorem: `M_zeros_of_zeta_controlled_by_X0_143`
 
   The terminal conditional combinator. Given `M_LanglandsDescent_Surface_OPEN`
-  (= `P5_LanglandsDescent_2pi7_OPEN`), derives `_root_.RiemannHypothesis` by
+  (= `P5_LanglandsDescent_2pi7`), derives `_root_.RiemannHypothesis` by
   applying `C09_RH_of_P5Bridge`.
 
   This is the **formal statement** that zeros of ζ(s) are controlled by
@@ -60,7 +60,7 @@
   * `_root_.RiemannHypothesis` in mathlib v4.12.0 may itself be a stub
     (`def RiemannHypothesis := ∀ s : ℂ, ...` — the real Clay statement).
     Check `#print _root_.RiemannHypothesis` before citing this file.
-  * `P5_LanglandsDescent_2pi7_OPEN` is vacuously satisfiable if RiemannHypothesis
+  * `P5_LanglandsDescent_2pi7` is vacuously satisfiable if RiemannHypothesis
     is provable by trivial means; it is named as the genuine analytic gap.
   * All five bricks (C01/C03/C06/C08/C09) are classical-trio-only, sorry-free.
     The combinator inherits those properties.
@@ -77,7 +77,7 @@ namespace TheoremaAureum
 /-- **Main theorem open surface alias.**
 
     The single remaining gap in the C01–C10 chain after all proved bricks
-    are discharged.  Aliases `P5_LanglandsDescent_2pi7_OPEN` from C09 under the
+    are discharged.  Aliases `P5_LanglandsDescent_2pi7` from C09 under the
     name "M_LanglandsDescent_Surface_OPEN" so that the main-theorem combinator's
     interface is self-documenting.
 
@@ -97,7 +97,7 @@ def M_LanglandsDescent_Surface_OPEN : Prop :=
 /-- **Main theorem: zeros of ζ(s) controlled by X₀(143). (NOT a brick)**
 
     *Statement:* Given the Langlands/2π/7 descent `hM`
-    (= `P5_LanglandsDescent_2pi7_OPEN`, the single remaining open surface),
+    (= `P5_LanglandsDescent_2pi7`, the single remaining open surface),
     the zeros of the Riemann zeta function are controlled by the arithmetic
     of X₀(143): `_root_.RiemannHypothesis` follows.
 
@@ -131,7 +131,7 @@ theorem M_zeros_of_zeta_controlled_by_X0_143
       arakelov_positivity_X0_143         : 0 < ω²  (i.e., ArakelovPositivity)
       P5_conductor_times_genus           : 143 × 13 = 1859  [CLOSED: boundary at p₇]
 
-    Plus one open surface: `P5_LanglandsDescent_2pi7_OPEN`
+    Plus one open surface: `P5_LanglandsDescent_2pi7`
     (= M_LanglandsDescent_Surface_OPEN): the analytic 2π/7 descent to ζ(s).
 
     NOT a proposition; this is documentation only. -/
