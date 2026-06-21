@@ -36,6 +36,7 @@ jobs:
 
       - name: lake build
         run: lake build
+
       - name: Check zero sorry
         run: |
           FOUND=$(grep -rn --include='*.lean' 'sorry' Towers/RH/Chain/ 2>/dev/null \
@@ -48,3 +49,4 @@ jobs:
             exit 1
           fi
           echo "PASS: no sorry tactic in proof code"
+
