@@ -26,7 +26,7 @@
   BRICK: `TheoremaAureum.P5_conductor_times_genus`
   SORRY: 0. Axiom footprint: classical trio.
 
-  ## Part 2 — OPEN surface: `P5_LanglandsDescent_2pi7_OPEN`
+  ## Part 2 — OPEN surface: `P5_LanglandsDescent_2pi7`
 
   Names the **remaining analytic gap** after the arithmetic part is closed:
 
@@ -55,9 +55,9 @@
   ## Part 3 — CONDITIONAL combinator: `C09_RH_of_P5Bridge`
 
   Discharges both proved inputs (`P5_conductor_times_genus` and
-  `arakelov_positivity_X0_143`) from `P5_LanglandsDescent_2pi7_OPEN`, reducing the
+  `arakelov_positivity_X0_143`) from `P5_LanglandsDescent_2pi7`, reducing the
   full chain debt to exactly **one** remaining open surface:
-  `P5_LanglandsDescent_2pi7_OPEN` itself (the Langlands/2π/7 descent).
+  `P5_LanglandsDescent_2pi7` itself (the Langlands/2π/7 descent).
 
   NOT a brick. SORRY: 0. RH: OPEN.
 
@@ -67,7 +67,7 @@
     dimension mediates the RH bridge is paper-level (Bost–Connes 1995, §6).
   * `arakelovSelfIntersection` in C01 is the slope-formula stand-in, not the
     genuine Arakelov ω².
-  * `P5_LanglandsDescent_2pi7_OPEN` is vacuously satisfiable if
+  * `P5_LanglandsDescent_2pi7` is vacuously satisfiable if
     `_root_.RiemannHypothesis := True` (the current mathlib stub), but it is
     named as the genuine analytic gap so it cannot be silently discharged.
   * RH: OPEN. YM Surface #1: OPEN. No Clay claim.
@@ -152,14 +152,14 @@ theorem P5_HeckeTransfer_14_CLOSED :
 
 /-- **C09 conditional combinator (NOT a brick).**
 
-    Given `P5_LanglandsDescent_2pi7_OPEN` (the Langlands/2π/7 descent, OPEN above),
+    Given `P5_LanglandsDescent_2pi7` (the Langlands/2π/7 descent, OPEN above),
     derives `_root_.RiemannHypothesis` by supplying both proved inputs:
 
     - `P5_conductor_times_genus` : (143 : ℕ) * 13 = 1859  (Part 1 BRICK)
     - `arakelov_positivity_X0_143` : ArakelovPositivity (X₀ 143)  (C08 BRICK)
 
     This reduces the entire C01–C09 chain's open debt to exactly one surface:
-    `P5_LanglandsDescent_2pi7_OPEN`.
+    `P5_LanglandsDescent_2pi7`.
 
     NOT a brick.  SORRY: 0.  RH: OPEN. -/
 theorem C09_RH_of_P5Bridge
