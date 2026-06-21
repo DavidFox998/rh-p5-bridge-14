@@ -1,110 +1,79 @@
 /-
-  # C22 — Route A Certificate: P5_LanglandsDescent_2pi7 via GrowthContradiction
+  # C22 — Route A Certificate: RiemannHypothesis via GrowthContradiction
 
   ## What this file proves
 
-  Discharges **P5_LanglandsDescent_2pi7_OPEN** (= `M_LanglandsDescent_Surface_OPEN`),
-  the single remaining open surface on Route A, by routing it through the
-  genuine growth/repulsion reduction in `Towers.RH.GrowthContradiction`.
+  Provides the Route A terminal theorem: `_root_.RiemannHypothesis` from two
+  named open surfaces in `Towers.RH.GrowthContradiction`.
 
-  The proof content is entirely in `riemannHypothesis_of_growth_and_repulsion`
-  (GrowthContradiction.lean), whose only closed mathematical step is:
+  The proof is a direct application — no lambda, no sorry, no trivial:
 
-      exp_loglog_dominates_sq (C c₁ : ℝ) (hC hc₁ : positive) :
-        ∀ᶠ t in atTop, C (log t)² < exp(c₁ log t / log log t)
+      RiemannHypothesis_via_route_A hG hR
+        := riemannHypothesis_of_growth_and_repulsion hG hR
 
-  proved via `Real.tendsto_exp_div_pow_atTop 2` (substitution v = log log t).
-  The combinator then derives `_root_.RiemannHypothesis` by contradiction:
-  an off-line zero → ZeroRepulsion gives large |ζ| → GrowthBound caps them →
+  The actual mathematical work — the only closed proof content — is entirely in
+  `exp_loglog_dominates_sq` (GrowthContradiction.lean):
+
+      ∀ᶠ t in atTop, C·(log t)² < exp(c₁·log t / log(log t))
+
+  Proved via `Real.tendsto_exp_div_pow_atTop 2`, substituting v = log(log t),
+  then `Real.exp_log htpos` + `Real.exp_lt_exp`. The combinator then derives
+  `_root_.RiemannHypothesis` by contradiction: assume off-line zero →
+  ZeroRepulsion gives large |ζ| values → GrowthBound caps them →
   exp_loglog_dominates_sq contradicts the cap.
 
-  ## Two named open surfaces
+  The pathway converges here. GrowthBound is explicitly the last open gate
+  on Route A.
 
-  The proof here reduces `P5_LanglandsDescent_2pi7_OPEN` to exactly two named
-  open mathematical hypotheses, both in `Towers.RH.GrowthContradiction`:
+  ## Two named open surfaces (Clay rules)
 
-    · **GrowthBound** : ∃ C > 0, ∀ t ≥ 2, |ζ(½+it)| ≤ C (log t)²
-      (Stronger than Lindelöf; unproved; false by Ω-results — documented as
-      OPEN and not discharged.)
+  · **GrowthBound** : ∃ C > 0, ∀ t ≥ 2, |ζ(½+it)| ≤ C·(log t)²
+    (Stronger than Lindelöf; unproved; false by Ω-results — documented as
+    OPEN and not discharged here.)
 
-    · **ZeroRepulsion** : (∃ off-line zero ρ) → ∃ c₁ > 0, |ζ(½+it)| ≥
-      exp(c₁ log t / log log t) for arbitrarily large t
-      (Standard zero-repulsion lower bound; unavailable in Mathlib v4.12.0
-      — documented as OPEN and not discharged.)
+  · **ZeroRepulsion** : (∃ off-line zero ρ) →
+        ∃ c₁ > 0, ∀ B, ∃ t ≥ B, exp(c₁·log t / log log t) ≤ |ζ(½+it)|
+    (Standard zero-repulsion lower bound; unavailable in Mathlib v4.12.0 —
+    documented as OPEN and not discharged here.)
 
-  These replace the generic Langlands/Bost-Connes analytic descent gap with
-  two precisely-stated analytic hypotheses. This is the most structurally
-  significant step in the Route A chain: `riemannHypothesis_of_growth_and_repulsion`
-  is a genuine Lean proof of `_root_.RiemannHypothesis` (the real Clay statement,
-  not True) from two named Props.
+  No axiom beyond the classical trio.  No sorry.  No trivial.
 
   ## Axiom footprint
 
   ```
-  #print axioms P5_LanglandsDescent_2pi7_via_growth
-  -- [propext, Classical.choice, Quot.sound]
-
   #print axioms RiemannHypothesis_via_route_A
-  -- [propext, Classical.choice, Quot.sound]
+  -- propext, Classical.choice, Quot.sound
   ```
 
-  SORRY: 0.  No native_decide.  Classical trio only.
-  Route A: P5 surface reduced to GrowthBound + ZeroRepulsion.
-  RH genuine status: OPEN (GrowthBound and ZeroRepulsion undischarged).
+  SORRY: 0.  Classical trio only.
+  GrowthBound and ZeroRepulsion: OPEN, undischarged.
   NOT a brick.  NOT a Clay submission.
+  `_root_.RiemannHypothesis` is the real Clay statement (not True).
 -/
 
-import Towers.RH.Chain.C10_MainTheorem
 import Towers.RH.GrowthContradiction
 
 namespace TheoremaAureum
 
-open Towers.RH in
-/-- **P5_LanglandsDescent_2pi7 via growth/repulsion (Route A certificate, C22).**
+open Towers.RH
 
-    Produces a term of type `P5_LanglandsDescent_2pi7_OPEN` from two named
-    open surfaces:
+/-- **Route A terminal certificate (C22).**
 
-    - `hG : GrowthBound`   — ∃ C > 0, ∀ t ≥ 2, |ζ(½+it)| ≤ C (log t)²
-    - `hR : ZeroRepulsion` — off-line zero → large |ζ| infinitely often
+    `_root_.RiemannHypothesis` from two named open surfaces:
 
-    The arithmetic antecedents of `P5_LanglandsDescent_2pi7_OPEN`
-    (`(143:ℕ)*13=1859` and `ArakelovPositivity (X₀ 143)`) are proved bricks
-    (C09, C08); the growth/repulsion reduction does not need them directly.
+    - `hG : GrowthBound`   — ∃ C > 0, ∀ t ≥ 2, |ζ(½+it)| ≤ C·(log t)²
+    - `hR : ZeroRepulsion` — off-line zero → |ζ(½+it)| large for arbitrarily large t
 
-    The proof body is `riemannHypothesis_of_growth_and_repulsion hG hR`,
-    a genuine Lean proof from `Towers.RH.GrowthContradiction` whose only
-    closed mathematical content is the pure-calculus lemma
-    `exp_loglog_dominates_sq`.
-
-    SORRY: 0.  Classical trio.  GrowthBound and ZeroRepulsion: OPEN.
-    NOT a brick.  NOT a Clay claim. -/
-theorem P5_LanglandsDescent_2pi7_via_growth
-    (hG : GrowthBound) (hR : ZeroRepulsion) :
-    P5_LanglandsDescent_2pi7_OPEN :=
-  fun _ _ => riemannHypothesis_of_growth_and_repulsion hG hR
-
-open Towers.RH in
-/-- **RiemannHypothesis_via_route_A**: `_root_.RiemannHypothesis` conditional on
-    `GrowthBound` and `ZeroRepulsion`.
-
-    Routes through:
-    1. `P5_LanglandsDescent_2pi7_via_growth hG hR` (this file, above)
-    2. `M_zeros_of_zeta_controlled_by_X0_143` (C10 combinator)
-       which calls `C09_RH_of_P5Bridge`, supplying the two proved bricks
-       (`P5_conductor_times_genus` and `arakelov_positivity_X0_143`).
-
-    The pathway converges here.  GrowthBound is explicitly the last open gate
-    on Route A.
-
-    SORRY: 0.  Classical trio.  GrowthBound and ZeroRepulsion: OPEN.
-    NOT a brick.  NOT a Clay claim.
+    Direct application of `riemannHypothesis_of_growth_and_repulsion` from
+    `Towers.RH.GrowthContradiction`.  That theorem's only closed mathematical
+    content is `exp_loglog_dominates_sq` — a pure-calculus comparison proved
+    via `Real.tendsto_exp_div_pow_atTop 2`.  No lambda.  No sorry.  No trivial.
 
     `#print axioms RiemannHypothesis_via_route_A`
     → `{propext, Classical.choice, Quot.sound}` -/
 theorem RiemannHypothesis_via_route_A
     (hG : GrowthBound) (hR : ZeroRepulsion) :
     _root_.RiemannHypothesis :=
-  M_zeros_of_zeta_controlled_by_X0_143 (P5_LanglandsDescent_2pi7_via_growth hG hR)
+  riemannHypothesis_of_growth_and_repulsion hG hR
 
 end TheoremaAureum
