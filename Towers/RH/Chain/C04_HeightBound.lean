@@ -9,7 +9,7 @@
 
   Recorded as a named OPEN surface: `VojtaHeightBound_X0_143_OPEN`.
   In chain terms this is one arithmetic component of the single remaining open
-  surface `P5_HeckeTransfer_14_OPEN` (C09).
+  surface `P5_LanglandsDescent_2pi7_OPEN` (C09).
 
   NOT a brick. SORRY: 0. Axiom footprint: classical trio.
   Namespace: TheoremaAureum.
@@ -38,7 +38,7 @@ namespace TheoremaAureum
     from Mathlib v4.12.0 (~300 pages of arithmetic geometry).
 
     STATUS: OPEN.  def Prop — NOT an axiom, NOT proved.
-    In chain terms: one arithmetic-geometry component of P5_HeckeTransfer_14_OPEN (C09).
+    In chain terms: one arithmetic-geometry component of P5_LanglandsDescent_2pi7_OPEN (C09).
     Enters theorems as an explicit hypothesis.
     #print axioms on any theorem taking (h_vft : VojtaHeightBound_X0_143_OPEN):
       {propext, Classical.choice, Quot.sound} -/
