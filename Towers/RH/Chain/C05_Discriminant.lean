@@ -8,7 +8,7 @@
 
   Recorded as a named OPEN surface: `DiscriminantBound_X0_143_OPEN`.
   In chain terms this is one arithmetic-geometry component of the single
-  remaining open surface `P5_HeckeTransfer_14_OPEN` (C09).
+  remaining open surface `P5_LanglandsDescent_2pi7_OPEN` (C09).
 
   Concrete values from C01 that would feed the genuine argument:
   • `arakelovSelfIntersection_X0_143`  : ω² = 48/13
@@ -42,7 +42,7 @@ namespace TheoremaAureum
     K_infty from Jorgenson-Kramer 1996 Table 1; absent from Mathlib v4.12.0.
 
     STATUS: OPEN.  def Prop — NOT an axiom, NOT proved.
-    In chain terms: one Arakelov-geometry component of P5_HeckeTransfer_14_OPEN (C09).
+    In chain terms: one Arakelov-geometry component of P5_LanglandsDescent_2pi7_OPEN (C09).
     Definitionally equal to Arakelov_Pairing_OPEN (C13) — the chain name.
     Enters theorems as an explicit hypothesis.
     #print axioms on any theorem taking (h_disc : DiscriminantBound_X0_143_OPEN):
