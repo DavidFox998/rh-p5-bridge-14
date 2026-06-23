@@ -25,16 +25,11 @@
   | C01 | K_bad_lt_threshold | Ogg-Schoof δ-sum < 24·log(143) | BRICK |
   | C06 | bost_connes_threshold | 2·√13 < 320 | BRICK |
   | C08 | arakelov_positivity_X0_143 | ArakelovPositivity (X₀ 143) | BRICK |
-  | C09 | P5_conductor_times_genus | (143:ℕ) * 13 = 1859 | BRICK [CLOSED] |
-  | C09 | P5_LanglandsDescent_2pi7 | [two proved inputs] → RH | OPEN surface |
+  | C09 | P5_conductor_times_genus | (143:ℕ) * 13 = 1859 | BRICK |
+  | C09 | P5_HeckeTransfer_14_OPEN | [two proved inputs] → RH | OPEN surface |
   | C10 | M_zeros_of_zeta_controlled | given hM → RH | COMBINATOR |
 
-  Open debt: exactly ONE named surface — P5_LanglandsDescent_2pi7.
-
-  **Arithmetic part CLOSED:** the boundary at p₇ closes the finiteness question
-  (conductor 143 × genus 13 = 1859 proved as a BRICK).
-  **Remaining gap:** the analytic descent from L(s, X₀(143)) to ζ(s) via the
-  2π/7 equidistribution saving (Bost–Connes / Langlands; paper-level).
+  Open debt: exactly ONE named surface — P5_HeckeTransfer_14_OPEN.
 
   ### Route B — four open surfaces (C13/C15/C17)
 
@@ -80,7 +75,7 @@ namespace TheoremaAureum
 
 /-- **Proved bricks summary (documentation only).**
 
-    All proved theorems in the RH chain as of 2026-06-21.
+    All proved theorems in the RH chain as of 2026-06-19.
     Each is 0 sorry, classical trio.  Listed for SHA-certified reference.
 
     ```
@@ -89,7 +84,7 @@ namespace TheoremaAureum
     K_bad_lt_threshold                   C01  Ogg-Schoof δ < 24·log(143)
     bost_connes_threshold                C06  2·√13 < 320
     arakelov_positivity_X0_143           C08  ArakelovPositivity (X₀ 143)
-    P5_conductor_times_genus             C09  (143:ℕ) * 13 = 1859  [CLOSED]
+    P5_conductor_times_genus             C09  (143:ℕ) * 13 = 1859
     sq_free_143                          C14  Squarefree 143
     C_S14_143_gt_tau                     C14  C_S14_143 > 2·√13
     discriminant_K_143                   JK   disc(𝓞_K) = -143
@@ -99,23 +94,23 @@ def C16_PROVED_BRICKS_COUNT : ℕ := 10
 
 /-- **Open surfaces count (documentation only).**
 
-    Route A: 1 open surface  (P5_LanglandsDescent_2pi7)
+    Route A: 1 open surface  (P5_HeckeTransfer_14_OPEN)
     Route B: 5 open surfaces (C13_RH_four_step inputs)
     Route C: 7 open surfaces (C15_RH_via_BC6ClassNumber inputs) -/
 def C16_OPEN_SURFACE_COUNTS : ℕ × ℕ × ℕ := (1, 5, 7)
 
 /-! ## §2. Route A: one surface -/
 
-/-- **RH_via_route_A**: given P5_LanglandsDescent_2pi7 alone, derive RH.
+/-- **RH_via_route_A**: given P5_HeckeTransfer_14_OPEN alone, derive RH.
 
     This is Route A of the proof chain.  The single input encodes:
-      (143:ℕ) * 13 = 1859 [PROVED: P5_conductor_times_genus — CLOSED]
+      (143:ℕ) * 13 = 1859 [PROVED: P5_conductor_times_genus]
       ArakelovPositivity (X₀ 143)  [PROVED: arakelov_positivity_X0_143]
-      → _root_.RiemannHypothesis   [OPEN: Langlands descent via 2π/7]
+      → _root_.RiemannHypothesis   [OPEN: Bost-Connes/Langlands transfer]
 
     SORRY: 0.  Classical trio.  NOT a brick. -/
 theorem RH_via_route_A
-    (hA : P5_LanglandsDescent_2pi7_OPEN) :
+    (hA : P5_HeckeTransfer_14_OPEN) :
     _root_.RiemannHypothesis :=
   M_zeros_of_zeta_controlled_by_X0_143 hA
 
@@ -143,9 +138,8 @@ theorem RH_via_route_B
     proof routes suffices.
 
     Route A (one surface):
-      P5_LanglandsDescent_2pi7  ≡  proved_inputs → _root_.RiemannHypothesis
-      Arithmetic CLOSED (boundary at p₇: 143×13=1859).
-      Open: the Langlands/2π/7 descent from L(s,X₀(143)) to ζ(s).
+      P5_HeckeTransfer_14_OPEN  ≡  proved_inputs → _root_.RiemannHypothesis
+      The Bost-Connes/Langlands Hecke transfer in the 1859-dim space.
 
     Route B (five surfaces):
       Arakelov_Pairing_OPEN  (JK 1996 Arakelov pairing > 0)
@@ -164,7 +158,7 @@ theorem RH_via_route_B
 
     SORRY: 0.  No native_decide.  NOT a brick.  RH: OPEN. -/
 theorem RH_via_either_route
-    (h : P5_LanglandsDescent_2pi7_OPEN ∨
+    (h : P5_HeckeTransfer_14_OPEN ∨
          (Arakelov_Pairing_OPEN ∧ Langlands_Descent_OPEN ∧
           KimSarnak_OPEN ∧ BC6SelbergTrace_OPEN ∧
           GRH_to_RH_Descent_143_OPEN)) :
@@ -185,7 +179,7 @@ theorem RH_via_either_route
 
     SORRY: 0.  Classical trio.  NOT a brick. -/
 theorem C16_chain_certificate
-    (hA      : P5_LanglandsDescent_2pi7_OPEN)
+    (hA      : P5_HeckeTransfer_14_OPEN)
     (h_ar    : Arakelov_Pairing_OPEN)
     (h_lang  : Langlands_Descent_OPEN)
     (h_ks    : KimSarnak_OPEN)
