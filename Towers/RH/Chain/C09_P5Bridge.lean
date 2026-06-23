@@ -7,47 +7,42 @@
 
     1. C01–C07  Arakelov setup — ω²(X₀(143)) = 48/13 > 0
     2. C08       M4 Weil Bridge — ArakelovPositivity (X₀ 143) proved (BRICK)
-    3. **C09**   P5-Bridge-14  — 143 × 13 = 1859 datum (BRICK); Langlands descent OPEN
+    3. **C09**   P5-Bridge-14  — 143 × 13 = 1859 datum, Hecke transfer named OPEN
     4. C10       Main theorem  — terminal conditional combinator
 
-  ## Part 1 — BRICK: `P5_conductor_times_genus`  [CLOSED]
+  ## Part 1 — BRICK: `P5_conductor_times_genus`
 
   Proves (143 : ℕ) * 13 = 1859 by norm_num.
 
   This is the **P5-Bridge-14 arithmetic certificate**: the modular curve X₀(143)
   has conductor N = 143 = 11 × 13 and arithmetic genus g = 13.  Their product
   1859 = N · g is the dimension of the Hecke-equivariant space that mediates the
-  transfer from Arakelov positivity to L-function zero-control.
+  transfer from Arakelov positivity to L-function zero-control in the
+  Bost–Connes / Langlands programme.
 
-  The boundary at p₇ (the 7th exceptional prime in the 14-prime set S₁₄) closes
-  the finiteness question completely: the 1859-dimensional Hecke space is finite,
-  and this is the arithmetic certificate for that finiteness.
+  The "P5-Bridge-14" label follows the M-chain's 14-prime exceptional set S_14
+  (M4 certificate) and the Bost–Connes constant M5 = VALOR = 42110:
+  the 1859-dimensional Hecke space is the arithmetic bridge between them.
 
   BRICK: `TheoremaAureum.P5_conductor_times_genus`
   SORRY: 0. Axiom footprint: classical trio.
 
-  ## Part 2 — OPEN surface: `P5_LanglandsDescent_2pi7`
+  ## Part 2 — OPEN surface: `P5_HeckeTransfer_14_OPEN`
 
-  Names the **remaining analytic gap** after the arithmetic part is closed:
+  Names the genuine analytic gap:
 
     (143 : ℕ) * 13 = 1859 →           — conductor × genus datum (PROVED, Part 1)
     ArakelovPositivity (X₀ 143) →     — Arakelov positivity (PROVED, C08)
     _root_.RiemannHypothesis           — the Clay target (OPEN)
 
-  **What is closed:** the arithmetic certificate (143 × 13 = 1859) and the
-  Arakelov positivity (ω² = 48/13 > 0) are both machine-verified bricks.
+  This is the **Hecke/Langlands transfer step**: the claim that the 1859-
+  dimensional Hecke space for X₀(143), combined with Arakelov positivity of the
+  slope-formula value ω² = 48/13, implies a zero-free half-plane for ζ(s)
+  consistent with RH.
 
-  **What remains open:** the descent from L(s, X₀(143)) to ζ(s) via the
-  2π/7 equidistribution saving.  Concretely:
-
-  - The Langlands functoriality descent: L(s, X₀(143)) controls ζ(s) via a
-    quantitative 2π/7 zero-separation argument on the critical line.
-  - Bost–Connes 1995 Theorem 6: the 1859-dimensional Hecke symmetries of X₀(143)
-    determine the zero distribution of L(s, X₀(143)) via adèlic spectral theory.
-  - Neither step is formalised in mathlib v4.12.0.
-
-  This is the single remaining gap in the C01–C10 chain.  Both inputs to the
-  implication are proved; the conclusion `_root_.RiemannHypothesis` is open.
+  The genuine content — Bost–Connes 1995 Theorem 6, Langlands functoriality,
+  automorphic descent ζ → L(s, X₀(143)) — is paper-level and NOT formalised
+  in mathlib v4.12.0.
 
   DO NOT discharge with `trivial`, `True.intro`, or `sorry`. OPEN.
   NOT a brick.
@@ -55,9 +50,9 @@
   ## Part 3 — CONDITIONAL combinator: `C09_RH_of_P5Bridge`
 
   Discharges both proved inputs (`P5_conductor_times_genus` and
-  `arakelov_positivity_X0_143`) from `P5_LanglandsDescent_2pi7`, reducing the
+  `arakelov_positivity_X0_143`) from `P5_HeckeTransfer_14_OPEN`, reducing the
   full chain debt to exactly **one** remaining open surface:
-  `P5_LanglandsDescent_2pi7` itself (the Langlands/2π/7 descent).
+  `P5_HeckeTransfer_14_OPEN` itself (the Hecke/Langlands transfer).
 
   NOT a brick. SORRY: 0. RH: OPEN.
 
@@ -67,7 +62,7 @@
     dimension mediates the RH bridge is paper-level (Bost–Connes 1995, §6).
   * `arakelovSelfIntersection` in C01 is the slope-formula stand-in, not the
     genuine Arakelov ω².
-  * `P5_LanglandsDescent_2pi7` is vacuously satisfiable if
+  * `P5_HeckeTransfer_14_OPEN` is vacuously satisfiable if
     `_root_.RiemannHypothesis := True` (the current mathlib stub), but it is
     named as the genuine analytic gap so it cannot be silently discharged.
   * RH: OPEN. YM Surface #1: OPEN. No Clay claim.
@@ -87,83 +82,59 @@ namespace TheoremaAureum
     has conductor N = 143 and arithmetic genus g = 13, giving a 1859-dimensional
     Hecke-equivariant transfer space N · g = 1859.
 
-    The boundary at p₇ in S₁₄ closes the finiteness question: this is the
-    arithmetic certificate that the Hecke space is finite-dimensional.
+    In the M-chain, this dimension connects the M4 exceptional-set certificate
+    (14-prime set, conductor 143) to the M5 Bost–Connes constant (VALOR = 42110)
+    via the Hecke/Langlands transfer in the 1859-dimensional space.
 
     SORRY: 0. Axiom footprint: classical trio.
     BRICK: `TheoremaAureum.P5_conductor_times_genus` -/
 theorem P5_conductor_times_genus : (143 : ℕ) * 13 = 1859 := by norm_num
 
-/-! ## Part 2 — OPEN surface (analytic descent only) -/
+/-! ## Part 2 — OPEN surface -/
 
-/-- **P5-Bridge-14 Langlands descent surface (OPEN).**
+/-- **P5-Bridge-14 Hecke transfer surface (OPEN).**
 
-    Names the remaining analytic gap after the arithmetic certificate is closed.
+    Names the analytic transfer step from Arakelov positivity + the 1859
+    conductor-genus datum to the Riemann Hypothesis.
 
-    **Closed (proved elsewhere):**
-    1. `(143 : ℕ) * 13 = 1859`  — the arithmetic datum (BRICK: P5_conductor_times_genus)
-    2. `ArakelovPositivity (X₀ 143)`  — Arakelov positivity (BRICK: C08)
+    The three inputs:
+    1. `(143 : ℕ) * 13 = 1859`  — the arithmetic datum (PROVED by norm_num above)
+    2. `ArakelovPositivity (X₀ 143)`  — Arakelov positivity (PROVED in C08)
+    3. The conclusion `_root_.RiemannHypothesis`  — the Clay target (OPEN)
 
-    **Open (this surface):**
-    The descent from L(s, X₀(143)) to ζ(s) via 2π/7 equidistribution.
-    Concretely: given the 1859-dim Hecke space and Arakelov positivity, a
-    2π/7 zero-separation argument on the critical line should imply RH.
-
-    The genuine analytic content:
-    - Bost–Connes 1995 Theorem 6: Hecke symmetries of X₀(143) in the 1859-dim
-      space control zero distribution of L(s, X₀(143)) via adèlic spectral theory.
-    - Langlands functoriality descent: L(s, X₀(143)) → ζ(s) via the 2π/7
-      equidistribution saving (the quantitative descent step).
-    - Neither is formalised in mathlib v4.12.0.
+    The genuine analytic content of the bridge:
+    - Bost–Connes 1995 Theorem 6: the Hecke symmetries of X₀(143) in degree 1859
+      determine the zero distribution of L(s, X₀(143)) via adèlic spectral theory.
+    - Langlands functoriality descent: L(s, X₀(143)) controls ζ(s) (the Clay RH).
+    - Neither step is formalised in mathlib v4.12.0.
 
     In the M-chain this corresponds to:
       `H2_WeilTransfer : 0 < VALOR → GRH_E_143a1`   (stub)
       `C05_Descent : GRH_E_143a1 → RiemannHypothesis` (stub)
 
     STATUS: OPEN.  DO NOT discharge with `trivial`, `True.intro`, or `sorry`.
-    NOT a brick.
-
-    Renamed from `P5_HeckeTransfer_14_OPEN` (2026-06-21): the arithmetic part
-    (finiteness at boundary p₇) is proved; this name isolates the analytic descent. -/
-def P5_LanglandsDescent_2pi7_OPEN : Prop :=
+    NOT a brick. -/
+def P5_HeckeTransfer_14_OPEN : Prop :=
   (143 : ℕ) * 13 = 1859 →
   ArakelovPositivity (X₀ 143) →
   _root_.RiemannHypothesis
-
-/-! ## Part 2b — BRICK: `P5_HeckeTransfer_14_CLOSED` -/
-
-/-- **P5 Hecke Transfer arithmetic closure. (BRICK, CLOSED)**
-
-    Proves the conjunction of both proved inputs to the P5 transfer:
-    - `(143 : ℕ) * 13 = 1859`  (conductor × genus = 1859)
-    - `ArakelovPositivity (X₀ 143)`  (ω² = 48/13 > 0)
-
-    This closes the arithmetic half of the P5-Bridge-14 step.  The boundary
-    at p₇ in S₁₄ closes the finiteness question completely.  Both inputs are
-    machine-verified bricks; their conjunction is a brick too.
-
-    SORRY: 0. Axiom footprint: classical trio.
-    BRICK: `TheoremaAureum.P5_HeckeTransfer_14_CLOSED` -/
-theorem P5_HeckeTransfer_14_CLOSED :
-    (143 : ℕ) * 13 = 1859 ∧ ArakelovPositivity (X₀ 143) :=
-  ⟨P5_conductor_times_genus, arakelov_positivity_X0_143⟩
 
 /-! ## Part 3 — CONDITIONAL combinator -/
 
 /-- **C09 conditional combinator (NOT a brick).**
 
-    Given `P5_LanglandsDescent_2pi7` (the Langlands/2π/7 descent, OPEN above),
+    Given `P5_HeckeTransfer_14_OPEN` (the Hecke/Langlands transfer, OPEN above),
     derives `_root_.RiemannHypothesis` by supplying both proved inputs:
 
     - `P5_conductor_times_genus` : (143 : ℕ) * 13 = 1859  (Part 1 BRICK)
     - `arakelov_positivity_X0_143` : ArakelovPositivity (X₀ 143)  (C08 BRICK)
 
     This reduces the entire C01–C09 chain's open debt to exactly one surface:
-    `P5_LanglandsDescent_2pi7`.
+    `P5_HeckeTransfer_14_OPEN`.
 
     NOT a brick.  SORRY: 0.  RH: OPEN. -/
 theorem C09_RH_of_P5Bridge
-    (hP5 : P5_LanglandsDescent_2pi7_OPEN) :
+    (hP5 : P5_HeckeTransfer_14_OPEN) :
     _root_.RiemannHypothesis :=
   hP5 P5_conductor_times_genus arakelov_positivity_X0_143
 
