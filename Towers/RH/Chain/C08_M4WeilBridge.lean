@@ -25,7 +25,7 @@
   BRICK: `TheoremaAureum.arakelov_positivity_X0_143`
   SORRY: 0. Axiom footprint: classical trio.
 
-  ### Part 2 — OPEN surface: `M4_ExceptionalWeilBridge_CLOSED`
+  ### Part 2 — OPEN surface: `M4_ExceptionalWeilBridge_OPEN`
 
   Names the remaining open gap explicitly:
 
@@ -42,7 +42,7 @@
   content — GRH for L(s, X₀(143)) via Bost–Connes 1995 Theorem 6, and the
   ζ-descent — is paper-level and NOT formalised in mathlib v4.12.0.
 
-  `M4_ExceptionalWeilBridge_CLOSED` names this surface exactly so future work has
+  `M4_ExceptionalWeilBridge_OPEN` names this surface exactly so future work has
   a precise target.  DO NOT discharge it with `trivial`, `True.intro`, or
   `sorry`.
 
@@ -51,7 +51,7 @@
   ### Part 3 — CONDITIONAL combinator: `C08_RH_of_M4`
 
   Applies C07's combinator with the now-proved `hA`, leaving only
-  `M4_ExceptionalWeilBridge_CLOSED` as the single remaining open input.
+  `M4_ExceptionalWeilBridge_OPEN` as the single remaining open input.
   NOT a brick.
 
   ## Honest caveats
@@ -61,7 +61,7 @@
     v4.12.0.  The brick proves the stand-in value is positive; it does NOT
     certify the genuine Arakelov self-intersection of X₀(143).
 
-  * `M4_ExceptionalWeilBridge_CLOSED` is vacuously satisfiable (if we set
+  * `M4_ExceptionalWeilBridge_OPEN` is vacuously satisfiable (if we set
     `_root_.RiemannHypothesis := True` as the mathlib stub does), but it is
     named as the genuine analytic gap so it cannot be silently discharged.
 
@@ -87,7 +87,7 @@ namespace TheoremaAureum
 
     It discharges the hypothesis `hA : ArakelovPositivity (X₀ 143)` in the
     C07 combinator, reducing the C-chain's open debt to one surface:
-    `M4_ExceptionalWeilBridge_CLOSED` (the M9 Weil-transfer step).
+    `M4_ExceptionalWeilBridge_OPEN` (the M9 Weil-transfer step).
 
     HONEST CAVEAT: `arakelovSelfIntersection` is the slope-formula stand-in,
     not the genuine Arakelov ω².  This brick certifies the stand-in value;
@@ -122,7 +122,7 @@ theorem arakelov_positivity_X0_143 : ArakelovPositivity (X₀ 143) :=
 
     STATUS: OPEN.  DO NOT discharge with `trivial`, `True.intro`, or `sorry`.
     NOT a brick. -/
-def M4_ExceptionalWeilBridge_CLOSED : Prop :=
+def M4_ExceptionalWeilBridge_OPEN : Prop :=
   ArakelovPositivity (X₀ 143) → _root_.RiemannHypothesis
 
 /-! ## Part 3 — CONDITIONAL combinator -/
@@ -136,11 +136,11 @@ def M4_ExceptionalWeilBridge_CLOSED : Prop :=
     the `hA` input.  Only `hbridge` — the Weil-bridge surface — remains open.
 
     This reduces the full C-chain open debt to exactly one surface:
-    `M4_ExceptionalWeilBridge_CLOSED`.
+    `M4_ExceptionalWeilBridge_OPEN`.
 
     NOT a brick.  SORRY: 0.  RH: OPEN. -/
 theorem C08_RH_of_M4WeilBridge
-    (hbridge : M4_ExceptionalWeilBridge_CLOSED) :
+    (hbridge : M4_ExceptionalWeilBridge_OPEN) :
     _root_.RiemannHypothesis :=
   C07_RH_of_Arakelov arakelov_positivity_X0_143 hbridge
 
