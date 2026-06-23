@@ -4,15 +4,15 @@
   ## Axiom footprint: classical trio only
 
   All named mathematical gaps enter as explicit `def Prop` open surfaces
-  (declared in Axioms.lean).  No `axiom` keyword appears here or in any
+  (declared in OpenSurfaces.lean).  No `axiom` keyword appears here or in any
   import.  `#print axioms RH_certificate_backed` returns:
     {propext, Classical.choice, Quot.sound}
 
   ## Named open surfaces (threaded as explicit hypotheses)
 
-    h_ks     : KimSarnak_Weil_OPEN   (Kim-Sarnak 2003; def Prop, Axioms.lean)
-    h_bc6    : BC6_Trace_OPEN        (BC95 Thm 6; def Prop, Axioms.lean)
-    h_lang   : Langlands_Weil_OPEN   (Cogdell-PS 1999; def Prop, Axioms.lean)
+    h_ks     : KimSarnak_Weil_OPEN   (Kim-Sarnak 2003; def Prop, OpenSurfaces.lean)
+    h_bc6    : BC6_Trace_OPEN        (BC95 Thm 6; def Prop, OpenSurfaces.lean)
+    h_lang   : Langlands_Weil_OPEN   (Cogdell-PS 1999; def Prop, OpenSurfaces.lean)
     hbridge  : GRH_to_RH_Descent_143_OPEN (this file; GRH→RH descent)
 
   ## Chain (classical trio only, 0 sorry)
@@ -27,7 +27,7 @@
   NOT a Clay claim.  SORRY: 0.  No native_decide.  RH: OPEN.
   Namespace: TheoremaAureum.
 -/
-import Towers.RH.Axioms
+import Towers.RH.OpenSurfaces
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 
 namespace TheoremaAureum
