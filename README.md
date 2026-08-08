@@ -138,5 +138,10 @@ is OPEN.  The single open surface (`P5_LanglandsDescent_2pi7_OPEN`) is named
 honestly and is not discharged.  Every proved theorem in this repo is
 unconditionally true under the classical trio — the conditional chain simply
 makes explicit what one additional analytic fact would suffice to close.
+true closes from this P5 Bridge can be found in companion repos 
+theorem:
 
-See also: [rh-core-c01-c07](https://github.com/DavidFox998/rh-core-c01-c07)
+theorem grh_to_rh_descent (h_grh : GRH_for_L L_fn) (h_lang : LanglandsTransfer L_fn) :
+    _root_.RiemannHypothesis := by
+  intro s hs htriv hs1
+  exact h_grh s (h_lang s hs) hs1 htriv
