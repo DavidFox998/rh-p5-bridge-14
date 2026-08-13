@@ -7,3 +7,4 @@ Mirrors `Towers/RH/Arakelov/AbbesUllmo.lean` — Abbes-Ullmo slope inequality, u
 If a Siegel zero existed, Arakelov height would be negative — contradiction. Distinct Clay approach from descent/growth/self-symmetry.
 
 "If Arakelov Positivity is true; The Riemann Hypothesis must also hold true."
+       https://github.com/DavidFox998/riemann-arakelov-positivity
