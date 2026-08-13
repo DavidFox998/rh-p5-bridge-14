@@ -8,10 +8,10 @@ require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "v4.12.0"
 
 require «bost-connes» from git
-  "https://github.com/DavidFox998/bost-connes" @ "v1.0-M1-M3-CLOSED"
+  "https://github.com/DavidFox998/bost-connes" @ "main"
 
 require «birch-swinnerton-dyer-143a1» from git
-  "https://github.com/DavidFox998/birch-swinnerton-dyer-143a1" @ "v1.0-CLAY-CLOSED"
+  "https://github.com/DavidFox998/birch-swinnerton-dyer-143a1" @ "main"
 
 lean_lib Towers where
   roots := #[`Towers]
