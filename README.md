@@ -1,13 +1,13 @@
 # P5-Bridge-14 — q5=226 q6=165849 cf_bound=82829 — Keystone CLOSED
 
 **Author: David J. Fox | ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)**
+**Ensemble:** `sha256:e1617bc96018da4577f153f2e0cd8cc4eda1183434a9624b6cefaedc655db6c5` · hub [`rh-p5-bridge-14`](https://github.com/DavidFox998/rh-p5-bridge-14) · anchor `d04e4bd1`
 **Lean 4.12 / Mathlib v4.12.0 — `lake build` 1s GREEN — 0 sorry — `{propext, Classical.choice, Quot.sound}`**
 
 Keystone of Opera Numerorum. Reduces infinite Hasse prime set `S_α0` to finite `S_14` (`|S_14|=14`). Provides explicit witnesses `q5=226`, `q6=165849`, `cf_bound=82829`, `p5=67645` for the four approaches to RH and for BSD 143a1.
 
 #print axioms P5_BSD_RH_closure_CLOSED
 -- propext, Classical.choice, Quot.sound
-
 
 ## Directly tied to P5 — the triad that feeds the keystone
 
