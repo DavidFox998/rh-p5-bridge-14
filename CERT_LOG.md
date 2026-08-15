@@ -2,8 +2,8 @@
 
 **Generated:** 2026-08-15  
 **Auditor:** `scripts/audit.sh` V1–V5 pipeline — run locally against clones at locked HEADs  
-**Chain SHA256:** `c79c94e7676a10b1cfb5afc75b7346b9b5b8589dee9b679db230ba3b8034e6d1`  
-**Chain locked:** 2026-08-05 (see [CHAIN.md](CHAIN.md))  
+**Chain SHA256:** `f39ed9a9bd7cc02c6cf415f40b3faaa3c627a5a0d53621766466f31a2211e7ce`  
+**Chain locked:** 2026-08-15 (see [CHAIN.md](CHAIN.md))  
 **Clay status:** All surfaces OPEN. Lean closures are machine-checked certificates; the Clay Mathematics Institute has not reviewed or accepted this work.
 
 ---
@@ -11,7 +11,7 @@
 ## Purpose
 
 This log is the "reduction to practice" audit exhibit for the Opera Numerorum ensemble.
-It records, for each of the 12 chain repos at their **locked HEAD commits**, the outputs of
+It records, for each of the 19 chain repos at their **locked HEAD commits**, the outputs of
 the uniform V1–V5 referee pipeline defined in `scripts/audit.sh`:
 
 - **V1** — `lake build` passes (confirmed via GitHub Actions CI at the locked HEAD)
@@ -24,7 +24,7 @@ the uniform V1–V5 referee pipeline defined in `scripts/audit.sh`:
 
 ## V1 — lake build (CI-verified)
 
-`lake build` was confirmed green by GitHub Actions at the locked HEAD for all 12 repos.
+`lake build` was confirmed green by GitHub Actions at the locked HEAD for all 19 repos.
 Local V1 was run with a CI-passthrough stub (full Mathlib cache download is ~8 GB per repo;
 CI evidence is recorded instead). V2–V5 were run locally from clean clones.
 

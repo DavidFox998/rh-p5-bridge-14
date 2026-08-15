@@ -1,8 +1,8 @@
 # Opera Numerorum — Repository Map
 
 **Author:** David J. Fox · ORCID [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)  
-**Ensemble chain SHA256:** `c79c94e7676a10b1cfb5afc75b7346b9b5b8589dee9b679db230ba3b8034e6d1`  
-**Chain locked:** 2026-08-05 (12 repos — see [CHAIN.md](CHAIN.md))  
+**Ensemble chain SHA256:** `f39ed9a9bd7cc02c6cf415f40b3faaa3c627a5a0d53621766466f31a2211e7ce`  
+**Chain locked:** 2026-08-15 (19 repos — see [CHAIN.md](CHAIN.md))  
 **Total repos:** 19
 
 ---
@@ -110,7 +110,7 @@ S₄           = {2, 3, 19, 191}        the moat primes; conductor 143 = 11 × 1
 C(S₄)        = 11.422148...           = 2·ln2 + 3·ln3/2 + 19·ln19/18 + 191·ln191/190
 genus(X₀(143)) = 13                   C(S₄) > 2√13 ≈ 7.211 by margin ×1.58
 φ            = (1+√5)/2               H4 throat slope
-chain SHA256 = c79c94e7676a10b1cfb5afc75b7346b9b5b8589dee9b679db230ba3b8034e6d1
+chain SHA256 = f39ed9a9bd7cc02c6cf415f40b3faaa3c627a5a0d53621766466f31a2211e7ce
 ```
 
 ---
