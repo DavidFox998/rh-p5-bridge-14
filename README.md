@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21926554.svg)](https://doi.org/10.5281/zenodo.21926554) [![CI](https://github.com/DavidFox998/rh-p5-bridge-14/actions/workflows/lean.yml/badge.svg)](https://github.com/DavidFox998/rh-p5-bridge-14/actions/workflows/lean.yml)
+
 # P5-Bridge-14 — q5=226 q6=165849 cf_bound=82829 — Keystone CLOSED
 
 **Author: David J. Fox | ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)**
