@@ -1,7 +1,7 @@
 # Opera Numerorum — Data Chain Lock (19 repos)
 
-**Chain SHA256:** `f39ed9a9bd7cc02c6cf415f40b3faaa3c627a5a0d53621766466f31a2211e7ce`  
-**Locked:** 2026-08-15  
+**Chain SHA256:** `702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825`  
+P26-08-23  
 **Repos in chain:** 19  
 **Previous chain (12 repos, 2026-08-05):** `c79c94e7676a10b1cfb5afc75b7346b9b5b8589dee9b679db230ba3b8034e6d1`
 
@@ -16,25 +16,25 @@ using the HEAD commits recorded in the table below.
 
 | Repo | HEAD at lock | Cluster |
 |------|-------------|---------|
-| [DavidFox998/arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) | `06acba5c93090da06eb68e95bac78fd848960ce0` | RH |
-| [DavidFox998/arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | `e99cf0e88ec18f5521e5a64bc23846c6d99673b5` | RH |
-| [DavidFox998/birch-swinnerton-dyer-143](https://github.com/DavidFox998/birch-swinnerton-dyer-143) | `3dda81d6d5a2b19240af52cddf68eb63f57e2527` | BSD |
-| [DavidFox998/birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) | `736dafb4b4fedeef1e54d3e826c9637c99cca053` | BSD |
-| [DavidFox998/bost-connes](https://github.com/DavidFox998/bost-connes) | `29f47e8bda41650714e5e4ae59fbeca729666950` | BSD/RH |
-| [DavidFox998/brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) | `99d74b15335b65b8ecebdf45b0c37c208690965e` | RH |
-| [DavidFox998/Certifications](https://github.com/DavidFox998/Certifications) | `b9633f13397e96a3c21662e73f9bf59e7521e529` | META |
-| [DavidFox998/eutheos-property](https://github.com/DavidFox998/eutheos-property) | `8e367a37395530fb133debead3ee07353d001fce` | P≠NP |
-| [DavidFox998/hodge-abelian-boundaries](https://github.com/DavidFox998/hodge-abelian-boundaries) | `1a64d07d82e398635578e732c3d655e92ee64555` | Hodge |
-| [DavidFox998/lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) | `f19e0adf1cffe9fea205ec6ea9f2b95ffee6308c` | RH |
-| [DavidFox998/morningstar-project](https://github.com/DavidFox998/morningstar-project) | `c74757f747b9335ddf829f7227855e9240697100` | META |
-| [DavidFox998/navier-stokes](https://github.com/DavidFox998/navier-stokes) | `5caeb6abbe1732ab6f72574bd57d0e3e0cd7ab26` | NS |
-| [DavidFox998/opera-sieve](https://github.com/DavidFox998/opera-sieve) | `c4dcbede18fb56860431e24c0fb2e9f5078817b9` | META |
-| [DavidFox998/p-vs-np](https://github.com/DavidFox998/p-vs-np) | `741d04f94485bb35d6c1163362153cf5c0924ea4` | P≠NP |
-| [DavidFox998/poincare-spectral](https://github.com/DavidFox998/poincare-spectral) | `19010a5be9505e9d10434f9b5b01785aa2bcd5a3` | Poincaré |
-| [DavidFox998/rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | `0e10b88f06ac89b2fa941f5b09c34b9cb92ca608` | RH |
-| [DavidFox998/rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) | `3150ac19a44e5e6eab2316f556858258cc163725` | META |
-| [DavidFox998/riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | `9ca24c9a7a7fdf9d5aedf1e13f4881d7d533af3f` | RH |
-| [DavidFox998/yang-mills-gap](https://github.com/DavidFox998/yang-mills-gap) | `c79ef3fa044f664f02b1b855c9814b888e36c5f3` | YM |
+| [DavidFox998/arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) | `6ec00281c55dca4dc2647e8f9c36574ccb327ec7` | RH |
+| [DavidFox998/arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | `49ad1b7f8fec6a871fea1959040e15d43493397a` | RH |
+| [DavidFox998/birch-swinnerton-dyer-143](https://github.com/DavidFox998/birch-swinnerton-dyer-143) | `853d7f3171900a4b3af96f7733f684cd8932de1a` | BSD |
+| [DavidFox998/birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) | `d690e1c30010eaf03ca446f8561612997ac36a5a` | BSD |
+| [DavidFox998/bost-connes](https://github.com/DavidFox998/bost-connes) | `15250352cace6fc15cd2a13cf9430d7be8fead00` | BSD/RH |
+| [DavidFox998/brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) | `c21a38cdb98e408659f565525dff9091940a0516` | RH |
+| [DavidFox998/Certifications](https://github.com/DavidFox998/Certifications) | `731253f5b336de77105a3dc85798828306abc9ad` | META |
+| [DavidFox998/eutheos-property](https://github.com/DavidFox998/eutheos-property) | `c3d272476ab82f7858b38f13dd7cde5e6d01baf9` | P≠NP |
+| [DavidFox998/hodge-abelian-boundaries](https://github.com/DavidFox998/hodge-abelian-boundaries) | `b5d4339e96bff39749093b0acbf323b03d3bb2e7` | Hodge |
+| [DavidFox998/lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) | `d0897752af48bd0c1c069c808518c1911d6e796d` | RH |
+| [DavidFox998/morningstar-project](https://github.com/DavidFox998/morningstar-project) | `14d94d39ed786170c450e64d3751d43a26be60d6` | META |
+| [DavidFox998/navier-stokes](https://github.com/DavidFox998/navier-stokes) | `ab0e5eccf6066e43a92a28c61dd256e88a84228e` | NS |
+| [DavidFox998/opera-sieve](https://github.com/DavidFox998/opera-sieve) | `43f8b96822e7db3328b7d24f48324aca600d0350` | META |
+| [DavidFox998/p-vs-np](https://github.com/DavidFox998/p-vs-np) | `ebcee3293972f67364d6724447c2cb4652a36173` | P≠NP |
+| [DavidFox998/poincare-spectral](https://github.com/DavidFox998/poincare-spectral) | `807f4b442fa599614598271b1b1364fc2fb31105` | Poincaré |
+| [DavidFox998/rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | `c10d48c7b11df28520598c3d0cfcb3006b16fec2` | RH |
+| [DavidFox998/rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) | `22bba853bf8b91d8d05cfddbbdb69d6e246ef068` | META |
+| [DavidFox998/riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | `14c52e307e95258965ed06291cdc2f03d1498900` | RH |
+| [DavidFox998/yang-mills-gap](https://github.com/DavidFox998/yang-mills-gap) | `bee05c045ff04a5a84eb2a33e4445ce454a0f368` | YM |
 
 ---
 
