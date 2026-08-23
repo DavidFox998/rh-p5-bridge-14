@@ -15,7 +15,7 @@ DRY_RUN=false
 
 python3 - "$DRY_RUN" <<'PYEOF'
 import sys, os, hashlib, json, urllib.request, urllib.error, re, subprocess
-from datetime import date
+from datetime import date, datetime
 
 dry_run = sys.argv[1] == "true"
 token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
@@ -167,7 +167,7 @@ with open("REPOS.md", "w") as f:
 print("Patched REPOS.md")
 
 # ── 5. Commit and push a branch ──────────────────────────────────────────────
-branch = f"chore/relock-chain-{today}"
+branch = f"chain-relock/{datetime.utcnow().strftime('%Y%m%d-%H%M%S')}"
 
 run = lambda *args, **kw: subprocess.run(list(args), check=True, **kw)
 run("git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com")
@@ -199,3 +199,4 @@ pr = gh_post(
 )
 print(f"PR opened: {pr['html_url']}")
 PYEOF
+
