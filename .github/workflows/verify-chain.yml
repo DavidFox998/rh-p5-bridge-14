@@ -4,6 +4,12 @@ name: Verify Ensemble Chain (daily)
 # Recomputes the SHA256 chain digest from live HEAD commits and compares it
 # against the value committed in CHAIN.md.
 #
+# rh-p5-bridge-14 is the bridge/meta repo that *contains* CHAIN.md.  Every
+# re-lock PR merges a new commit *into* rh-p5-bridge-14, so fetching its live
+# HEAD would always disagree with the just-merged CHAIN.md entry.  Instead we
+# read rh-p5-bridge-14's SHA directly from the CHAIN.md table — this is the
+# value that was current when the re-lock ran, which is the correct anchor.
+#
 # On drift:
 #   - The job exits non-zero  →  GitHub Actions marks the check as failed.
 #   - A Slack message is posted via the SLACK_WEBHOOK_URL repository secret.
@@ -69,7 +75,7 @@ jobs:
               "yang-mills-gap",
           ]
 
-          # ── read expected SHA from CHAIN.md ───────────────────────────────────
+          # ── read expected chain SHA and rh-p5-bridge-14's locked SHA ─────────
           with open("CHAIN.md") as f:
               text = f.read()
           m = re.search(r'\*\*Chain SHA256:\*\*\s*`([0-9a-f]{64})`', text)
@@ -78,6 +84,19 @@ jobs:
               sys.exit(1)
           expected = m.group(1)
 
+          # Read rh-p5-bridge-14's SHA from the CHAIN.md table.
+          # We never fetch it live because every re-lock commit that updates
+          # CHAIN.md creates a new HEAD for rh-p5-bridge-14 — fetching live
+          # would always report false drift for the bridge repo itself.
+          bridge_m = re.search(
+              r'\[DavidFox998/rh-p5-bridge-14\]\([^)]+\)\s*\|\s*`([0-9a-f]{40})`',
+              text
+          )
+          if not bridge_m:
+              print("ERROR: could not parse rh-p5-bridge-14 SHA from CHAIN.md table", file=sys.stderr)
+              sys.exit(1)
+          bridge_sha = bridge_m.group(1)
+
           # ── fetch live HEADs from GitHub API ──────────────────────────────────
           tok = os.environ["GITHUB_TOKEN"]
           owner = "DavidFox998"
@@ -85,18 +104,23 @@ jobs:
 
           print("Fetching HEAD commits from GitHub API …")
           for repo in repos:
-              url = f"https://api.github.com/repos/{owner}/{repo}/commits/main"
-              req = urllib.request.Request(url, headers={
-                  "Authorization": f"token {tok}",
-                  "Accept": "application/vnd.github.v3+json",
-              })
-              try:
-                  sha = json.loads(urllib.request.urlopen(req).read())["sha"]
-              except Exception as e:
-                  print(f"ERROR: failed to fetch {repo}: {e}", file=sys.stderr)
-                  sys.exit(1)
+              if repo == "rh-p5-bridge-14":
+                  # Use the SHA locked in CHAIN.md to avoid circular drift.
+                  sha = bridge_sha
+                  print(f"  {repo:<45} {sha[:12]}  (from CHAIN.md — bridge repo)")
+              else:
+                  url = f"https://api.github.com/repos/{owner}/{repo}/commits/main"
+                  req = urllib.request.Request(url, headers={
+                      "Authorization": f"token {tok}",
+                      "Accept": "application/vnd.github.v3+json",
+                  })
+                  try:
+                      sha = json.loads(urllib.request.urlopen(req).read())["sha"]
+                  except Exception as e:
+                      print(f"ERROR: failed to fetch {repo}: {e}", file=sys.stderr)
+                      sys.exit(1)
+                  print(f"  {repo:<45} {sha[:12]}")
               lines.append(f"{repo}:{sha}")
-              print(f"  {repo:<45} {sha[:12]}")
 
           # ── recompute ─────────────────────────────────────────────────────────
           actual = hashlib.sha256(("\n".join(lines) + "\n").encode()).hexdigest()
