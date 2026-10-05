@@ -25,7 +25,7 @@ on:
 
 jobs:
   check-ensemble-links:
-    name: "Check README back-links (all 19 repos)"
+    name: "Check README back-links (public repos, skip private)"
     runs-on: ubuntu-latest
 
     steps:

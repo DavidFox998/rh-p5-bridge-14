@@ -12,6 +12,9 @@ using the HEAD commits recorded in the table below.
 
 ---
 
+
+Public check: lock `6ec00281c55d` stays. Live public core main is `da3b943c662f37c62f8bbaf6ad38783a84ed9b54`. Private routes (`arakelov-rh-descent`, `brothers-desert-proof`, `rh-growth-contradiction`, `riemann-arakelov-positivity`) are not fetched. Their public workspace is `riemann-hypothesis-four-routes`. `scripts/relock-chain.sh` and `scripts/verify-ensemble.sh` skip those names and exit 0.
+
 ## Repos in this chain
 
 | Repo | HEAD at lock | Cluster |
