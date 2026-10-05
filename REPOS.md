@@ -1,9 +1,9 @@
 # Opera Numerorum — Repository Map
 
 **Author:** David J. Fox · ORCID [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)  
-**Ensemble chain SHA256:** `702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825`  
-P26-08-23 (19 repos — see [CHAIN.md](CHAIN.md))  
-**Total repos:** 19
+**Historical chain SHA256 (19 repos, P26-08-23):** `702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825`  
+See [CHAIN.md](CHAIN.md).  
+**RH cluster:** condensed from 19 separate route repos into this one checkout. Referees read `Towers/`. Private remotes are not fetched. Public core live `da3b943c662f` vs lock `6ec00281c55d`.
 
 ---
 
@@ -23,20 +23,21 @@ To audit any repo: clone it and run [`scripts/audit.sh <path>`](scripts/audit.sh
 
 ## Cluster 1 — Riemann Hypothesis
 
-Four independent routes (A–D) plus the keystone bridge and RH core.
-All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 11.422 > 2√13.
+Four routes (A–D), the core, and this keystone now live in this repository. Former private remotes are not fetched. The same S₄ = {2, 3, 19, 191} threshold is cited in the local files: C(S₄) = 11.422 > 2√13.
 
-| Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
-|------|------|-------|-------------|--------|--------|-------|------|
-| [riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | Route A | RH via Arakelov positivity on X₀(143): ω² = 48/13 > 0 (Abbes-Ullmo) | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `14c52e307e95` |
-| [arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | Route B | RH via Kim-Sarnak spectral descent: λ₁ ≥ 975/4096 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `49ad1b7f8fec` |
-| [rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | Route C | RH via growth contradiction: exp(c√(log t/log log t)) dominates (log t)² | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `c10d48c7b11d` |
-| [brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) | Route D | RH via Dirichlet jitter self-symmetry of 35 Brothers; ‖p·α₀‖ < 1/p | `LEAN_CLOSED` | 0 | classical trio | — | `c21a38cdb98e` |
-| [arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) | RH core | `riemann_hypothesis_unconditional` (B158) — 0 sorry, 0 axiom debt beyond classical trio | `LEAN_CLOSED` | 0 | classical trio | — | `6ec00281c55d` |
-| [rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) | Keystone | Connects P5 prime gaps ↔ RH via 14-step C-chain; uniform interface to full ensemble | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `22bba853bf8b` |
-| [lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) | Lindelöf | μ = 0 for X₀(143): \|ζ(1/2+it)\| = O(t^ε) via S₄ | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `d0897752af48` |
+| Local module | Role | Claim | Historical remote | Historical HEAD |
+|--------------|------|-------|-------------------|-----------------|
+| [Towers/RH/Arakelov/AbbesUllmo.lean](Towers/RH/Arakelov/AbbesUllmo.lean) | Route A | RH via Arakelov positivity on X₀(143): ω² = 48/13 > 0 (Abbes-Ullmo) | `riemann-arakelov-positivity` (private) | `14c52e307e95` |
+| [Towers/RH/KimSarnak/](Towers/RH/KimSarnak/) | Route B | RH via Kim-Sarnak spectral descent: λ₁ ≥ 975/4096 | `arakelov-rh-descent` (private) | `49ad1b7f8fec` |
+| [Towers/RH/GrowthContradiction.lean](Towers/RH/GrowthContradiction.lean) | Route C | RH via growth contradiction: exp(c√(log t/log log t)) dominates (log t)² | `rh-growth-contradiction` (private) | `c10d48c7b11d` |
+| [Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean](Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean) | Route D | RH via Dirichlet jitter self-symmetry of 35 Brothers; ‖p·α₀‖ < 1/p | `brothers-desert-proof` (private) | `c21a38cdb98e` |
+| [Towers/RH/Arakelov/AbbesUllmo.lean](Towers/RH/Arakelov/AbbesUllmo.lean) | RH core | local core. Public live `main` `da3b943c662f` vs CHAIN.md lock `6ec00281c55d` | `arakelov-positivity-rh-core` (public) | `6ec00281c55d` |
+| [Towers/RH/Chain/C09_P5Bridge.lean](Towers/RH/Chain/C09_P5Bridge.lean) | Keystone | Connects P5 prime gaps ↔ RH via the C-chain in this repo | this repo | `22bba853bf8b` |
+| [Towers/RH/Formalized/Modular_Sieve_Lindelof.lean](Towers/RH/Formalized/Modular_Sieve_Lindelof.lean) | Lindelöf | μ = 0 for X₀(143): \|ζ(1/2+it)\| = O(t^ε) via S₄, local sieve | `lindelof-hypothesis-143` | `d0897752af48` |
 
-**Entry point for referees:** Start at `rh-p5-bridge-14`. Read `CHAIN.md` for the ensemble SHA, then follow `Towers/RH/Chain/` C01→C22.
+**Entry point for referees:** this checkout. Read [CHAIN.md](CHAIN.md), then [`Towers/RH/Chain/`](Towers/RH/Chain/) from C01 through C22, including [`P5_BSD_RH_Link.lean`](Towers/RH/Chain/P5_BSD_RH_Link.lean).
+
+The `LEAN_CLOSED` / sorry / axiom columns that used to sit on the remote rows are not restated here. They were claims about those other checkouts.
 
 ---
 

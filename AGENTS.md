@@ -26,20 +26,27 @@ expressed in the language of Riemann Hypothesis.
 
 Look for `Bridge` or `P5` Lean files.
 
-## Siblings in this cluster
+## Local modules (condensed)
 
-| Repo | Role |
-|------|------|
-| [DavidFox998/riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | sibling in cluster |
-| [DavidFox998/rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | sibling in cluster |
-| [DavidFox998/arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | sibling in cluster |
+The four RH routes, the core, and this bridge are one referee checkout. Private remotes are not fetched. There is no Lean module `RH.Bridge.P5`; `Towers` is the ensemble (`lakefile.lean`).
+
+| Former remote | Local path |
+|---------------|------------|
+| DavidFox998/riemann-arakelov-positivity (private) | [Towers/RH/Arakelov/](Towers/RH/Arakelov/) |
+| DavidFox998/rh-growth-contradiction (private) | [Towers/RH/GrowthContradiction.lean](Towers/RH/GrowthContradiction.lean) |
+| DavidFox998/arakelov-rh-descent (private) | [Towers/RH/KimSarnak/](Towers/RH/KimSarnak/) |
+| DavidFox998/brothers-desert-proof (private) | [Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean](Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean) |
+| DavidFox998/arakelov-positivity-rh-core | [Towers/RH/Arakelov/AbbesUllmo.lean](Towers/RH/Arakelov/AbbesUllmo.lean) — live `da3b943c662f` vs lock `6ec00281c55d` |
+| this repo | [Towers/RH/Chain/C09_P5Bridge.lean](Towers/RH/Chain/C09_P5Bridge.lean), [Towers/RH/Chain/P5_BSD_RH_Link.lean](Towers/RH/Chain/P5_BSD_RH_Link.lean) |
 
 ## Full chain
 
 ```
-CHAIN SHA256 (all 19 repos locked 2026-08-15):
+Historical digest recorded in this file (2026-08-15):
 f39ed9a9bd7cc02c6cf415f40b3faaa3c627a5a0d53621766466f31a2211e7ce
-See CHAIN.md for all 19 repo HEADs at lock time.
+CHAIN.md historical 19-repo digest (P26-08-23):
+702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825
+Daily check: scripts/verify-ensemble.sh — local Towers/, private names skipped.
 ```
 
 ## Key numbers shared across all repos
