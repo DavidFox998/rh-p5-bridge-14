@@ -103,3 +103,9 @@ David J. Fox · Independent researcher · Aberdeen, WA
 ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105) · Opera Numerorum — 2026
 
 ```
+
+
+## Related: Beal Conjecture — chart engine precedent
+- Engine: https://www.beal-conjecture.com / https://github.com/DavidFox998/beal-conjecture main a2a23292 Merge PR25 contains 792b3f8 EQUIV:3 chartOfModelTrue_injective_from_Ei_constraint B=1 nonzero
+- Pattern: condensed 4 rh routes+core+bridge→1 for referees mirrors beal-v38 EQUIV chain ddfb2642→e466e5a→792b3f8 Y³≠0 Y³ outside cusp centreNormalPoly outside I² centreAlphaBound 2 0=1 X+V² outside cusp ann(1+Y·S³)≠ann(X²) before conj 7 theorems [propext,choice,Quot.sound]
+- Wrapper: beal-v39-even 1fc6071 bealEven_from_chartTrueEquiv build 0
