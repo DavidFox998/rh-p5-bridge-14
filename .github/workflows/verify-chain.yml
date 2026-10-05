@@ -26,6 +26,8 @@ on:
   schedule:
     - cron: "0 8 * * *"    # every day at 08:00 UTC
   workflow_dispatch:
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read            # read-only; no writes needed
