@@ -1,7 +1,7 @@
 {
-  "title": "P5-Bridge-14 — Keystone Formalization for BSD and the Riemann Hypothesis",
+  "title": "P5-Bridge-14 \u2014 Keystone Formalization for BSD and the Riemann Hypothesis",
   "upload_type": "software",
-  "description": "Lean 4 formalization of the keystone formalization connecting the P5 prime-gap certificate, BSD for 143a1, and the Opera Numerorum routes toward the Riemann Hypothesis. This repository is part of David Fox's Opera Numerorum ensemble.",
+  "description": "Lean 4 formalization of the keystone connecting the P5 prime-gap certificate, BSD for 143a1, and the Opera Numerorum routes toward the Riemann Hypothesis. Prep only \u2014 not a new Zenodo deposit. After pull request 78 merges, the next upload supersedes 10.5281/zenodo.21926554. Condensed from 19 route repositories into this checkout. Private remotes are not fetched. Public core da3b943c662f is recorded against CHAIN.md lock 6ec00281c55d. Referees read Towers/.",
   "creators": [
     {
       "name": "Fox, David",
@@ -13,8 +13,8 @@
   "keywords": [
     "P5 bridge",
     "Riemann Hypothesis",
-    "Birch–Swinnerton-Dyer conjecture",
-    "X₀(143)",
+    "Birch\u2013Swinnerton-Dyer conjecture",
+    "X\u2080(143)",
     "Lean 4",
     "formal verification",
     "prime gaps",
@@ -26,6 +26,11 @@
       "identifier": "https://github.com/DavidFox998/rh-p5-bridge-14",
       "relation": "isSupplementTo",
       "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.21926554",
+      "relation": "isNewVersionOf",
+      "scheme": "doi"
     }
   ],
   "communities": [
@@ -33,5 +38,6 @@
       "identifier": "lean"
     }
   ],
-  "language": "en"
+  "language": "en",
+  "version": "opera-condensed-19-to-1"
 }

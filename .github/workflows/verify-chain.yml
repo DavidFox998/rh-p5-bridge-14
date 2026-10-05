@@ -1,26 +1,20 @@
 name: Verify Ensemble Chain (daily)
 
 # Runs every day at 08:00 UTC and on demand.
-# Recomputes the SHA256 chain digest from live HEAD commits and compares it
-# against the value committed in CHAIN.md.
 #
-# rh-p5-bridge-14 is the bridge/meta repo that *contains* CHAIN.md.  Every
-# re-lock PR merges a new commit *into* rh-p5-bridge-14, so fetching its live
-# HEAD would always disagree with the just-merged CHAIN.md entry.  Instead we
-# read rh-p5-bridge-14's SHA directly from the CHAIN.md table — this is the
-# value that was current when the re-lock ran, which is the correct anchor.
+# Condensed from 19 separate route repos (arakelov-rh-descent etc private)
+# into rh-p5-bridge-14, a single referee-friendly repo. The check verifies
+# the local Towers/ modules and records public core da3b943c662f against the
+# CHAIN.md lock 6ec00281c55d. It does not call the GitHub API for private
+# members. A private name in CHAIN.md is a warning skip, not an HTTP 404
+# failure (run 37206175413).
 #
-# On drift:
-#   - The job exits non-zero  →  GitHub Actions marks the check as failed.
-#   - A Slack message is posted via the SLACK_WEBHOOK_URL repository secret.
-#
-# This workflow is read-only.  When drift is detected, the weekly re-lock
-# workflow (relock-chain.yml) or a manual `workflow_dispatch` of it will
-# create the PR that updates CHAIN.md / REPOS.md.
+# On a real local miss (missing Towers file, or the lock note removed):
+#   - The job exits non-zero.
+#   - A Slack message is posted via SLACK_WEBHOOK_URL when that secret exists.
 #
 # Required repository secret:
-#   SLACK_WEBHOOK_URL  — incoming-webhook URL for your Slack workspace.
-#                        If absent, the Slack step is skipped gracefully.
+#   SLACK_WEBHOOK_URL  — incoming-webhook URL. If absent, the Slack step is skipped.
 
 on:
   schedule:
@@ -28,126 +22,24 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read            # read-only; no writes needed
+  contents: read
 
 jobs:
   verify:
-    name: "Verify chain SHA against live HEADs"
+    name: "Verify local Towers against CHAIN.md lock"
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout rh-p5-bridge-14
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Recompute chain SHA and compare
+      - name: Verify local ensemble (skip private remotes)
         id: verify
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python3 - << 'PYEOF'
-          import hashlib, json, re, sys, os, urllib.request
+        run: bash scripts/verify-ensemble.sh
 
-          # ── canonical repo list (alphabetical — must match CHAIN.md) ─────────
-          repos = [
-              "arakelov-positivity-rh-core",
-              "arakelov-rh-descent",
-              "birch-swinnerton-dyer-143",
-              "birch-swinnerton-dyer-143a1",
-              "bost-connes",
-              "brothers-desert-proof",
-              "Certifications",
-              "eutheos-property",
-              "hodge-abelian-boundaries",
-              "lindelof-hypothesis-143",
-              "morningstar-project",
-              "navier-stokes",
-              "opera-sieve",
-              "p-vs-np",
-              "poincare-spectral",
-              "rh-growth-contradiction",
-              "rh-p5-bridge-14",
-              "riemann-arakelov-positivity",
-              "yang-mills-gap",
-          ]
-
-          # ── read expected chain SHA and rh-p5-bridge-14's locked SHA ─────────
-          with open("CHAIN.md") as f:
-              text = f.read()
-          m = re.search(r'\*\*Chain SHA256:\*\*\s*`([0-9a-f]{64})`', text)
-          if not m:
-              print("ERROR: could not parse expected chain SHA from CHAIN.md", file=sys.stderr)
-              sys.exit(1)
-          expected = m.group(1)
-
-          # Read rh-p5-bridge-14's SHA from the CHAIN.md table.
-          # We never fetch it live because every re-lock commit that updates
-          # CHAIN.md creates a new HEAD for rh-p5-bridge-14 — fetching live
-          # would always report false drift for the bridge repo itself.
-          bridge_m = re.search(
-              r'\[DavidFox998/rh-p5-bridge-14\]\([^)]+\)\s*\|\s*`([0-9a-f]{40})`',
-              text
-          )
-          if not bridge_m:
-              print("ERROR: could not parse rh-p5-bridge-14 SHA from CHAIN.md table", file=sys.stderr)
-              sys.exit(1)
-          bridge_sha = bridge_m.group(1)
-
-          # ── fetch live HEADs from GitHub API ──────────────────────────────────
-          tok = os.environ["GITHUB_TOKEN"]
-          owner = "DavidFox998"
-          lines = []
-
-          print("Fetching HEAD commits from GitHub API …")
-          for repo in repos:
-              if repo == "rh-p5-bridge-14":
-                  # Use the SHA locked in CHAIN.md to avoid circular drift.
-                  sha = bridge_sha
-                  print(f"  {repo:<45} {sha[:12]}  (from CHAIN.md — bridge repo)")
-              else:
-                  url = f"https://api.github.com/repos/{owner}/{repo}/commits/main"
-                  req = urllib.request.Request(url, headers={
-                      "Authorization": f"token {tok}",
-                      "Accept": "application/vnd.github.v3+json",
-                  })
-                  try:
-                      sha = json.loads(urllib.request.urlopen(req).read())["sha"]
-                  except Exception as e:
-                      print(f"ERROR: failed to fetch {repo}: {e}", file=sys.stderr)
-                      sys.exit(1)
-                  print(f"  {repo:<45} {sha[:12]}")
-              lines.append(f"{repo}:{sha}")
-
-          # ── recompute ─────────────────────────────────────────────────────────
-          actual = hashlib.sha256(("\n".join(lines) + "\n").encode()).hexdigest()
-
-          print()
-          print(f"Expected SHA : {expected}")
-          print(f"Actual SHA   : {actual}")
-
-          # ── write step outputs ────────────────────────────────────────────────
-          gho = os.environ.get("GITHUB_OUTPUT", "")
-          if gho:
-              with open(gho, "a") as f:
-                  f.write(f"expected_sha={expected}\n")
-                  f.write(f"actual_sha={actual}\n")
-                  drifted = "true" if actual != expected else "false"
-                  f.write(f"drifted={drifted}\n")
-
-          if actual == expected:
-              print("\n✓ Chain is current — no drift detected.")
-          else:
-              print("\n✗ DRIFT DETECTED — chain SHA has changed.", file=sys.stderr)
-              print("  One or more ensemble repos has received a new commit since", file=sys.stderr)
-              print("  the last re-lock.  Run the re-lock workflow to update CHAIN.md.", file=sys.stderr)
-              sys.exit(1)
-          PYEOF
-
-      - name: Post Slack alert on drift
+      - name: Post Slack alert on failure
         if: failure() && steps.verify.conclusion == 'failure'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -170,15 +62,13 @@ jobs:
           run_url  = '${RUN_URL}'
           payload  = {
             'text': (
-              '\u26a0\ufe0f *Opera Numerorum — ensemble chain drift detected*\n'
-              'The chain SHA in \`rh-p5-bridge-14/CHAIN.md\` no longer matches '
-              'the live HEAD commits.  One or more of the 19 member repos has '
-              'received a new commit since the last re-lock.\n\n'
-              f'  \u2022 *Stored SHA:* \`{expected[:16]}\u2026\`\n'
-              f'  \u2022 *Live SHA:*   \`{actual[:16]}\u2026\`\n\n'
-              f'<{run_url}|View failed run> \u2022 '
-              'Trigger the *Chain Re-lock* workflow or run '
-              '\`bash scripts/relock-chain.sh\` locally to create an update PR.'
+              '\u26a0\ufe0f *Opera Numerorum — local ensemble check failed*\n'
+              'scripts/verify-ensemble.sh did not find the local Towers modules '
+              'or the CHAIN.md lock note. Private remotes are skipped; this alert '
+              'is not an HTTP 404 on arakelov-rh-descent.\n\n'
+              f'  \u2022 *CHAIN.md lock:* \`{expected[:16]}\u2026\`\n'
+              f'  \u2022 *Public core:*   \`{actual[:16]}\u2026\`\n\n'
+              f'<{run_url}|View failed run>'
             )
           }
           print(json.dumps(payload))

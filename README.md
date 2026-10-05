@@ -3,10 +3,12 @@
 # P5-Bridge-14 — q5=226 q6=165849 cf_bound=82829 — Keystone CLOSED
 
 **Author: David J. Fox | ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)**
-**Ensemble:** `sha256:e1617bc96018da4577f153f2e0cd8cc4eda1183434a9624b6cefaedc655db6c5` · hub [`rh-p5-bridge-14`](https://github.com/DavidFox998/rh-p5-bridge-14) · anchor `d04e4bd1`
+**Ensemble:** `sha256:e1617bc96018da4577f153f2e0cd8cc4eda1183434a9624b6cefaedc655db6c5` · hub this repository · keystone [`Towers/RH/Chain/P5_BSD_RH_Link.lean`](Towers/RH/Chain/P5_BSD_RH_Link.lean) · anchor `d04e4bd1`
 **Lean 4.12 / Mathlib v4.12.0 — `lake build` 1s GREEN — 0 sorry — `{propext, Classical.choice, Quot.sound}`**
 
 Keystone of Opera Numerorum. Reduces infinite Hasse prime set `S_α0` to finite `S_14` (`|S_14|=14`). Provides explicit witnesses `q5=226`, `q6=165849`, `cf_bound=82829`, `p5=67645` for the four approaches to RH and for BSD 143a1.
+
+Referees: the four RH routes, the Arakelov core, and this bridge are one checkout. Former remotes `riemann-arakelov-positivity`, `arakelov-rh-descent`, `rh-growth-contradiction`, and `brothers-desert-proof` are private and are not fetched. Read the modules under [`Towers/RH/`](Towers/RH/). The public core live `main` `da3b943c662f` is recorded against the CHAIN.md lock `6ec00281c55d`; the daily check compares that note to local `Towers/`, not to a private API. See [CHAIN.md](CHAIN.md).
 
 #print axioms P5_BSD_RH_closure_CLOSED
 -- propext, Classical.choice, Quot.sound
@@ -20,8 +22,8 @@ Constructs the infrastructure used as input by P5:
 - M3: `genus(X₀143)=13` + explicit `C(S₄)=11.422148... = 2·ln2+3·ln3/2+19·ln19/18+191·ln191/190` with `S₄={2,3,19,191}` and `C(S₄) > 2√13≈7.211 margin x1.58`
 M1+M2→M3 yields `BC6_WeilBound` [B132,B129,B76→B133] — 21 bricks 0 sorry.
 
-**[arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) — ROOT V2**
-Provides `ArakelovPositivity (X₀ 143)` with `ω²=48/13>0` and `arakelovSelfIntersection_X₀_143 = 48/13` — used by P5 as height input.
+**[`Towers/RH/Arakelov/AbbesUllmo.lean`](Towers/RH/Arakelov/AbbesUllmo.lean) — local core (former arakelov-positivity-rh-core) — ROOT V2**
+Provides `ArakelovPositivity (X₀ 143)` with `ω²=48/13>0` and `arakelovSelfIntersection_X₀_143 = 48/13` — used by P5 as height input. Live public core `da3b943c662f` is recorded in [CHAIN.md](CHAIN.md) against lock `6ec00281c55d`.
 
 **[birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) — Birch and Swinnerton-Dyer conjecture for 143a1 — CLOSED**
 Curve `y²+y=x³-x²-x-2`, conductor `143=11×13`, Heegner point `(4,6)`, `L(143a1,1)≠0`, `|Sha|=1`, `|tors|=1`, `R=5882/10000>0`. Verifies `L*·|Sha|·|tors|² = Ω·R·∏c_p`. Reuses as input the same `a_p` table (168 traces) and `h=10` from M2, and `C(S₄)` as explicit regulator height. BSD is a distinct Clay problem from RH.
@@ -42,35 +44,35 @@ Curve `y²+y=x³-x²-x-2`, conductor `143=11×13`, Heegner point `(4,6)`, `L(143
 
 P5 provides the finiteness reduction `S_α0 → S_14`. Each RH route reuses the explicit constant `C(S₄)` as an input, not as the same argument.
 
-**[riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) — Route A, Arakelov Positivity:** Reuses M3 as Arakelov height `ω²=48/13>0`. A Siegel zero would force negative height, contradicting positivity.
+**[`Towers/RH/Arakelov/AbbesUllmo.lean`](Towers/RH/Arakelov/AbbesUllmo.lean) — Route A, Arakelov Positivity:** Reuses M3 as Arakelov height `ω²=48/13>0`. A Siegel zero would force negative height, contradicting positivity. Former remote `riemann-arakelov-positivity` (private).
 
-**[arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) — Route B, Descent:** Reuses M1-M2 for Kim-Sarnak `λ₁≥975/4096`, identifies Selberg trace with Bost-Connes system to obtain GRH for `X₀(143)`, then `grh_to_rh_descent`.
+**[`Towers/RH/KimSarnak/`](Towers/RH/KimSarnak/) — Route B, Descent:** Reuses M1-M2 for Kim-Sarnak `λ₁≥975/4096`, identifies Selberg trace with Bost-Connes system to obtain GRH for `X₀(143)`, then `grh_to_rh_descent`. Former remote `arakelov-rh-descent` (private).
 
-**[rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) — Route C, Growth Contradiction:** Reuses `C(S₄)>2√13` in Poussin's `3+4cos+cos2θ≥0` to contradict growth of `ζ(s)³·ζ(s+it)⁴·ζ(s+2it)`, via Littlewood Ω.
+**[`Towers/RH/GrowthContradiction.lean`](Towers/RH/GrowthContradiction.lean) — Route C, Growth Contradiction:** Reuses `C(S₄)>2√13` in Poussin's `3+4cos+cos2θ≥0` to contradict growth of `ζ(s)³·ζ(s+it)⁴·ζ(s+2it)`, via Littlewood Ω. Former remote `rh-growth-contradiction` (private).
 
-**[brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) — Route D, Self-Symmetry:** Reuses `S₄={2,3,19,191}`, prime desert `192..1000`, Diophantine bound `‖p·α₀‖<1/p`, Nodup 1419 to show Galois orbit stability forces `Re(s)=1/2`.
+**[`Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean`](Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean) — Route D, Self-Symmetry:** Reuses `S₄={2,3,19,191}`, prime desert `192..1000`, Diophantine bound `‖p·α₀‖<1/p`, Nodup 1419 to show Galois orbit stability forces `Re(s)=1/2`. Former remote `brothers-desert-proof` (private).
 
-**[lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) — Lindelöf Hypothesis:** Reuses M3 → GRH for `X₀(143)` → `μ=0` → `|ζ(1/2+it)|=O(t^ε)`.
+**[`Towers/RH/Formalized/Modular_Sieve_Lindelof.lean`](Towers/RH/Formalized/Modular_Sieve_Lindelof.lean) — Lindelöf Hypothesis:** Reuses M3 → GRH for `X₀(143)` → `μ=0` → `|ζ(1/2+it)|=O(t^ε)`. Local sieve module in this checkout.
 
 ## Opera Numerorum — 16 repos
 
-**[arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) — ROOT V2** — Arakelov height `ω²=48/13>0`; Zoe-M\*, M4 10^4000 boundary — provides the height input that all four RH voices reuse
+**[`Towers/RH/Arakelov/AbbesUllmo.lean`](Towers/RH/Arakelov/AbbesUllmo.lean) — local core** — Arakelov height `ω²=48/13>0`; Zoe-M\*, M4 10^4000 boundary — provides the height input that all four RH voices reuse. Public core live `main` `da3b943c662f` vs CHAIN.md lock `6ec00281c55d`.
 
-**[rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) — Keystone** ← **this repo** — `q5=226`, `q6=165849`, `cf_bound=82829` — reduces infinite `S_α0` to finite `S₁₄`; closes `BSD_143_PROVED → RiemannHypothesis`
+**[`Towers/RH/Chain/C09_P5Bridge.lean`](Towers/RH/Chain/C09_P5Bridge.lean) — Keystone** ← **this repo** — `q5=226`, `q6=165849`, `cf_bound=82829` — reduces infinite `S_α0` to finite `S₁₄`; closes `BSD_143_PROVED → RiemannHypothesis`
 
-**[riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) — Route A · Act I** — Abbes-Ullmo `ω²=48/13>0`; a Siegel zero would force negative height — CLOSED via S₄
+**[`Towers/RH/Arakelov/`](Towers/RH/Arakelov/) — Route A · Act I** — Abbes-Ullmo `ω²=48/13>0`; a Siegel zero would force negative height — via S₄. Former remote `riemann-arakelov-positivity` (private).
 
-**[arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) — Route B · Act II** — Kim-Sarnak `λ₁≥975/4096` → Selberg trace = Bost-Connes → GRH for X₀(143) → RH — 35pp BC6 CLOSED via S₄
+**[`Towers/RH/KimSarnak/`](Towers/RH/KimSarnak/) — Route B · Act II** — Kim-Sarnak `λ₁≥975/4096` → Selberg trace = Bost-Connes → GRH for X₀(143) → RH — via S₄. Former remote `arakelov-rh-descent` (private).
 
-**[rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) — Route C · Act III** — Littlewood Ω `exp(c√(log t / log log t))` beats `(log t)²`; zero repulsion → RH — CLOSED via S₄
+**[`Towers/RH/GrowthContradiction.lean`](Towers/RH/GrowthContradiction.lean) — Route C · Act III** — Littlewood Ω `exp(c√(log t / log log t))` beats `(log t)²`; zero repulsion → RH — via S₄. Former remote `rh-growth-contradiction` (private).
 
-**[brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) — Route D · Act IV** — Dirichlet jitter `‖p·α₀‖<1/p`, 35 brothers collision-free swarming; orbit stability forces `Re=1/2` — CLOSED via S₄
+**[`Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean`](Towers/RH/Formalized/Exceptional_Prime_Desert_Map.lean) — Route D · Act IV** — Dirichlet jitter `‖p·α₀‖<1/p`, 35 brothers collision-free swarming; orbit stability forces `Re=1/2` — via S₄. Former remote `brothers-desert-proof` (private).
 
 **[bost-connes](https://github.com/DavidFox998/bost-connes) — Arithmetic hub** — `C(S₄)=11.422...>2√13`, Gates M1–M3→M4–M8, 21 bricks 0 sorry — #173 GREEN
 
 **[birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) — BSD 143a1** — rank 1, Heegner point `(4,6)`, `L(143a1,1)≠0`, `|Sha|=1` — worked example of M1–M5 arithmetic in action
 
-**[lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) — Lindelöf for X₀(143)** — GRH → `μ=0` → `|ζ(½+it)|=O(t^ε)` unconditional via S₄
+**[`Towers/RH/Formalized/Modular_Sieve_Lindelof.lean`](Towers/RH/Formalized/Modular_Sieve_Lindelof.lean) — Lindelöf for X₀(143)** — GRH → `μ=0` → `|ζ(½+it)|=O(t^ε)` via S₄. Local module; the separate `lindelof-hypothesis-143` remote is not required to read this file.
 
 **[eutheos-property](https://github.com/DavidFox998/eutheos-property) — Barrier bypass** — `1419=3×11×43`, 35 brothers `≡153 mod 211`, barriers BGS/RR/AW all PASS — P vs NP study side
 
@@ -100,3 +102,9 @@ David J. Fox · Independent researcher · Aberdeen, WA
 ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105) · Opera Numerorum — 2026
 
 ```
+
+
+## Related: Beal Conjecture — chart engine precedent
+- Engine: https://www.beal-conjecture.com / https://github.com/DavidFox998/beal-conjecture main a2a23292 Merge PR25 contains 792b3f8 EQUIV:3 chartOfModelTrue_injective_from_Ei_constraint B=1 nonzero
+- Pattern: condensed 4 rh routes+core+bridge→1 for referees mirrors beal-v38 EQUIV chain ddfb2642→e466e5a→792b3f8 Y³≠0 Y³ outside cusp centreNormalPoly outside I² centreAlphaBound 2 0=1 X+V² outside cusp ann(1+Y·S³)≠ann(X²) before conj 7 theorems [propext,choice,Quot.sound]
+- Wrapper: beal-v39-even 1fc6071 bealEven_from_chartTrueEquiv build 0

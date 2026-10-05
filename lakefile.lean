@@ -13,5 +13,6 @@ require bost_connes from git
 require birch_swinnerton_dyer_143a1 from git
   "https://github.com/DavidFox998/birch-swinnerton-dyer-143a1" @ "main"
 
+-- opera condensed — no RH.Bridge.P5 module — Towers is ensemble
 lean_lib Towers where
   roots := #[`Towers]
