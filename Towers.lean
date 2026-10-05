@@ -1,0 +1,5 @@
+-- opera condensed — no RH.Bridge.P5 module — Towers is the ensemble
+-- Library root for `lean_lib Towers`.
+-- Route sources are the files under `Towers/RH/`. This root does not import
+-- them: several still name modules that are not in this checkout
+-- (`TheoremaAureum`, `Towers.BSD`, `Towers.RH.OpenSurfaces`).

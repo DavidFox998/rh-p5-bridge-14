@@ -61,6 +61,20 @@ if ! grep -q "da3b943c662f" CHAIN.md; then
   echo "ERROR: CHAIN.md does not record local core da3b943c662f" >&2
   exit 1
 fi
+if ! grep -q "da3b943c662f37c62f8bbaf6ad38783a84ed9b54" lake-manifest.json; then
+  echo "ERROR: lake-manifest.json does not pin arakelov at da3b943c662f" >&2
+  exit 1
+fi
+echo "  ok  lake-manifest.json pins arakelov ${PUBLIC_CORE_LIVE}"
+
+if [[ -e .lake/packages/arakelov/.git || -d .lake/packages/arakelov ]]; then
+  local_core="$(git -C .lake/packages/arakelov rev-parse HEAD 2>/dev/null || true)"
+  if [[ "$local_core" != "$PUBLIC_CORE_LIVE" ]]; then
+    echo "ERROR: .lake/packages/arakelov is ${local_core:-missing}, expected ${PUBLIC_CORE_LIVE}" >&2
+    exit 1
+  fi
+  echo "  ok  .lake/packages/arakelov ${local_core}"
+fi
 
 echo "compare: live core ${PUBLIC_CORE_LIVE:0:12} vs lock ${CHAIN_LOCK:0:12} (recorded; not a remote fetch)"
 
