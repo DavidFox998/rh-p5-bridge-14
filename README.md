@@ -75,7 +75,6 @@ P5 provides the finiteness reduction `S_α0 → S_14`. Each RH route reuses the 
 
 
 
-ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105) · Archive: [pistus-theoria](https://github.com/DavidFox998/pistus-theoria) — `OperaNumerorum_MasterEquations.pdf SHA 7f6b31b4`
 ### Build
 ```bash
 lake update
