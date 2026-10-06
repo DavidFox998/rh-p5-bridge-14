@@ -36,8 +36,9 @@ Millennium and MCOM entries lead.
 
 ## Infrastructure
 
-- [opera-sieve](https://github.com/DavidFox998/opera-sieve) — Canonical sieve for S(α₀ = 299+π/10); M1–M13 pipeline.
 - [morningstar-project](https://github.com/DavidFox998/morningstar-project) — Machine certification for GRH(X₀(143)) and BSD(J₀(143)).
+
+*opera-sieve and the Certifications ledger are private; referee access is via the Oracle.*
 
 ---
 
