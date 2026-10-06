@@ -1,7 +1,7 @@
 # Opera Numerorum — Repository Map
 
 **Author:** David J. Fox · ORCID [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)  
-**Ensemble chain SHA256:** `702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825`  
+**Ensemble chain SHA256:** `b7fd458d479a65e2a94d673fd2b041c8a15ee8de80f0db45e96cf59b4e1ce339`  
 P26-08-23 (19 repos — see [CHAIN.md](CHAIN.md))  
 **Total repos:** 19
 
@@ -28,13 +28,13 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | Route A | RH via Arakelov positivity on X₀(143): ω² = 48/13 > 0 (Abbes-Ullmo) | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `14c52e307e95` |
-| [arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | Route B | RH via Kim-Sarnak spectral descent: λ₁ ≥ 975/4096 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `49ad1b7f8fec` |
-| [rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | Route C | RH via growth contradiction: exp(c√(log t/log log t)) dominates (log t)² | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `c10d48c7b11d` |
-| [brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) | Route D | RH via Dirichlet jitter self-symmetry of 35 Brothers; ‖p·α₀‖ < 1/p | `LEAN_CLOSED` | 0 | classical trio | — | `c21a38cdb98e` |
-| [arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) | RH core | `riemann_hypothesis_unconditional` (B158) — 0 sorry, 0 axiom debt beyond classical trio | `LEAN_CLOSED` | 0 | classical trio | — | `6ec00281c55d` |
-| [rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) | Keystone | Connects P5 prime gaps ↔ RH via 14-step C-chain; uniform interface to full ensemble | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `22bba853bf8b` |
-| [lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) | Lindelöf | μ = 0 for X₀(143): \|ζ(1/2+it)\| = O(t^ε) via S₄ | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `d0897752af48` |
+| [riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | Route A | RH via Arakelov positivity on X₀(143): ω² = 48/13 > 0 (Abbes-Ullmo) | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `b62e1e138cb4` |
+| [arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | Route B | RH via Kim-Sarnak spectral descent: λ₁ ≥ 975/4096 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `fb50a23fffef` |
+| [rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | Route C | RH via growth contradiction: exp(c√(log t/log log t)) dominates (log t)² | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `82cf02498690` |
+| [brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) | Route D | RH via Dirichlet jitter self-symmetry of 35 Brothers; ‖p·α₀‖ < 1/p | `LEAN_CLOSED` | 0 | classical trio | — | `e5c1814b4e36` |
+| [arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) | RH core | `riemann_hypothesis_unconditional` (B158) — 0 sorry, 0 axiom debt beyond classical trio | `LEAN_CLOSED` | 0 | classical trio | — | `59ca013e8aa2` |
+| [rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) | Keystone | Connects P5 prime gaps ↔ RH via 14-step C-chain; uniform interface to full ensemble | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `2b106c7268ac` |
+| [lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) | Lindelöf | μ = 0 for X₀(143): \|ζ(1/2+it)\| = O(t^ε) via S₄ | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `ba293fb60a56` |
 
 **Entry point for referees:** Start at `rh-p5-bridge-14`. Read `CHAIN.md` for the ensemble SHA, then follow `Towers/RH/Chain/` C01→C22.
 
@@ -44,9 +44,9 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) | BSD main | BSD for 143a1: rank 1, Heegner point (4,6), L(143a1,1) ≠ 0, \|Sha\| = 1 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `d690e1c30010` |
-| [birch-swinnerton-dyer-143](https://github.com/DavidFox998/birch-swinnerton-dyer-143) | h(K) = 10 | Standalone proof: class number of ℚ(√−143) = 10 via two independent routes | `LEAN_CLOSED` | 0 | classical trio | — | `853d7f317190` |
-| [bost-connes](https://github.com/DavidFox998/bost-connes) | BC6 gates | Bost-Connes M1–M3 for X₀(143): S_weil = S_spectral; BC6 Weil bound closed; 21 bricks | `LEAN_CLOSED` | 0 | classical trio | — | `15250352cace` |
+| [birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) | BSD main | BSD for 143a1: rank 1, Heegner point (4,6), L(143a1,1) ≠ 0, \|Sha\| = 1 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `d950b4fb4c00` |
+| [birch-swinnerton-dyer-143](https://github.com/DavidFox998/birch-swinnerton-dyer-143) | h(K) = 10 | Standalone proof: class number of ℚ(√−143) = 10 via two independent routes | `LEAN_CLOSED` | 0 | classical trio | — | `2a5fe5f48cee` |
+| [bost-connes](https://github.com/DavidFox998/bost-connes) | BC6 gates | Bost-Connes M1–M3 for X₀(143): S_weil = S_spectral; BC6 Weil bound closed; 21 bricks | `LEAN_CLOSED` | 0 | classical trio | — | `a5da300a8d73` |
 
 **Layer structure (birch-swinnerton-dyer-143a1):**
 - Layer A — Std-only: norm-form algebra, BQF enumeration, 10 reduced forms with completeness certificate
@@ -59,8 +59,8 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [p-vs-np](https://github.com/DavidFox998/p-vs-np) | MACHINE | IF SAT ∉ P THEN P ≠ NP — 223 bricks, 3 barriers, H4 Fibonacci tower framework | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `ebcee3293972` |
-| [eutheos-property](https://github.com/DavidFox998/eutheos-property) | ANSWER | T = 1419 witness: CC9 = 9 exactly; 35 Brothers family via α₀ = 299+π/10 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `c3d272476ab8` |
+| [p-vs-np](https://github.com/DavidFox998/p-vs-np) | MACHINE | IF SAT ∉ P THEN P ≠ NP — 223 bricks, 3 barriers, H4 Fibonacci tower framework | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `a499a4dca2d8` |
+| [eutheos-property](https://github.com/DavidFox998/eutheos-property) | ANSWER | T = 1419 witness: CC9 = 9 exactly; 35 Brothers family via α₀ = 299+π/10 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `7b0085ea3448` |
 
 **Read order:** `p-vs-np` (the question) → `eutheos-property` (the certified witness).
 
@@ -70,8 +70,8 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [yang-mills-gap](https://github.com/DavidFox998/yang-mills-gap) | YM gap | SU(3) lattice YM mass gap at β₀ = ln 8; Bessel N=5, w₁ < 1/7 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `bee05c045ff0` |
-| [navier-stokes](https://github.com/DavidFox998/navier-stokes) | NS regularity | NS global regularity + mass gap for SU(3); energy dissipation bounds | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `ab0e5eccf606` |
+| [yang-mills-gap](https://github.com/DavidFox998/yang-mills-gap) | YM gap | SU(3) lattice YM mass gap at β₀ = ln 8; Bessel N=5, w₁ < 1/7 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `9872ddba9cf0` |
+| [navier-stokes](https://github.com/DavidFox998/navier-stokes) | NS regularity | NS global regularity + mass gap for SU(3); energy dissipation bounds | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `fce1db4ff726` |
 
 ---
 
@@ -79,7 +79,7 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [poincare-spectral](https://github.com/DavidFox998/poincare-spectral) | Poincaré | Spectral gap for Poincaré homology sphere S³/I* — decidable instance | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `807f4b442fa5` |
+| [poincare-spectral](https://github.com/DavidFox998/poincare-spectral) | Poincaré | Spectral gap for Poincaré homology sphere S³/I* — decidable instance | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `309cbf7460bf` |
 
 ---
 
@@ -87,7 +87,7 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [hodge-abelian-boundaries](https://github.com/DavidFox998/hodge-abelian-boundaries) | Hodge | 200 measured Hodge (2,2)-class obstructions on CM abelian boundaries | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `b5d4339e96bf` |
+| [hodge-abelian-boundaries](https://github.com/DavidFox998/hodge-abelian-boundaries) | Hodge | 200 measured Hodge (2,2)-class obstructions on CM abelian boundaries | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `2a6477beb7bc` |
 
 ---
 
@@ -95,9 +95,9 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 | Repo | Role | Contents | HEAD |
 |------|------|----------|------|
-| [opera-sieve](https://github.com/DavidFox998/opera-sieve) | Canonical sieve | Sieve for S(α₀ = 299+π/10); M1–M13 pipeline; Postgres dashboard; CI guard | `43f8b96822e7` |
-| [morningstar-project](https://github.com/DavidFox998/morningstar-project) | Certification | GRH X₀(143) + BSD certification; SORRY=0; Morning Star Project Volume I | `14d94d39ed78` |
-| [Certifications](https://github.com/DavidFox998/Certifications) | Ledger | 664 certified bricks; PDFs; cryptographic Seal (AXIOMS.txt, SORRYS.txt, TIMESTAMP.txt) | `731253f5b336` |
+| [opera-sieve](https://github.com/DavidFox998/opera-sieve) | Canonical sieve | Sieve for S(α₀ = 299+π/10); M1–M13 pipeline; Postgres dashboard; CI guard | `2b4c8f948396` |
+| [morningstar-project](https://github.com/DavidFox998/morningstar-project) | Certification | GRH X₀(143) + BSD certification; SORRY=0; Morning Star Project Volume I | `3a93b9ae2352` |
+| [Certifications](https://github.com/DavidFox998/Certifications) | Ledger | 664 certified bricks; PDFs; cryptographic Seal (AXIOMS.txt, SORRYS.txt, TIMESTAMP.txt) | `d54ecd974f70` |
 
 ---
 
