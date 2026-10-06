@@ -2,8 +2,8 @@
 
 **Author:** David J. Fox · ORCID [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)  
 **Ensemble chain SHA256:** `702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825`  
-P26-08-23 (19 repos — see [CHAIN.md](CHAIN.md))  
-**Total repos:** 19
+P26-08-23 chain lock (19 repos — see [CHAIN.md](CHAIN.md))  
+**Total repos in map:** 19 · **Public in map as of 2026-10-06:** 15 · **Private in map:** 4 (the historical Route A–D repositories; the GitHub account holds 18 public repositories total, the remainder outside this map).
 
 ---
 
@@ -15,6 +15,7 @@ P26-08-23 (19 repos — see [CHAIN.md](CHAIN.md))
 | `COMPUTATIONAL_CERT` | Machine-checkable certificate; some steps are `noncomputable` or `native_decide`-closed |
 | `META` | Infrastructure, ledger, or certificate archive — not a proof repo |
 | **Clay status** | **OPEN for all repos.** The Clay Mathematics Institute has not reviewed or accepted any of this work. The Lean closures are formal certificates, not Clay Prize submissions. |
+| **Cleanliness scope** | Sorry/axiom counts refer to the checked `lake build` target only. Whole source trees may include archived, experimental, or upstream-snapshot files with explicit axioms or admissions outside the active root — a clean target must not be advertised as a clean proof of everything in the repository. |
 | ⛓ | Repo is in the 2026-08-05 cryptographic chain |
 
 To audit any repo: clone it and run [`scripts/audit.sh <path>`](scripts/audit.sh).
@@ -23,20 +24,24 @@ To audit any repo: clone it and run [`scripts/audit.sh <path>`](scripts/audit.sh
 
 ## Cluster 1 — Riemann Hypothesis
 
-Four independent routes (A–D) plus the keystone bridge and RH core.
+Four routes (A–D) plus the keystone bridge and RH core.
 All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 11.422 > 2√13.
+
+**Route status is not uniform.** Route B takes GRH/transfer inputs; Route C takes growth/repulsion inputs; Route D imports Route C and carries inherited hypotheses. The routes share a common compiled interface, but they are not four independent unconditional proofs merely because that interface compiles. Route A's terminal source theorem needs its own full dependency audit.
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) | Route A | RH via Arakelov positivity on X₀(143): ω² = 48/13 > 0 (Abbes-Ullmo) | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `14c52e307e95` |
-| [arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) | Route B | RH via Kim-Sarnak spectral descent: λ₁ ≥ 975/4096 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `49ad1b7f8fec` |
-| [rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) | Route C | RH via growth contradiction: exp(c√(log t/log log t)) dominates (log t)² | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `c10d48c7b11d` |
-| [brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) | Route D | RH via Dirichlet jitter self-symmetry of 35 Brothers; ‖p·α₀‖ < 1/p | `LEAN_CLOSED` | 0 | classical trio | — | `c21a38cdb98e` |
+| [riemann-arakelov-positivity](https://github.com/DavidFox998/riemann-arakelov-positivity) — not public | Route A | RH via Arakelov positivity on X₀(143): ω² = 48/13 > 0 (Abbes-Ullmo) | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `14c52e307e95` |
+| [arakelov-rh-descent](https://github.com/DavidFox998/arakelov-rh-descent) — not public | Route B | RH via Kim-Sarnak spectral descent: λ₁ ≥ 975/4096 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `49ad1b7f8fec` |
+| [rh-growth-contradiction](https://github.com/DavidFox998/rh-growth-contradiction) — not public | Route C | RH via growth contradiction: exp(c√(log t/log log t)) dominates (log t)² | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `c10d48c7b11d` |
+| [brothers-desert-proof](https://github.com/DavidFox998/brothers-desert-proof) — not public | Route D | RH via Dirichlet jitter self-symmetry of 35 Brothers; ‖p·α₀‖ < 1/p | `LEAN_CLOSED` | 0 | classical trio | — | `c21a38cdb98e` |
 | [arakelov-positivity-rh-core](https://github.com/DavidFox998/arakelov-positivity-rh-core) | RH core | `riemann_hypothesis_unconditional` (B158) — 0 sorry, 0 axiom debt beyond classical trio | `LEAN_CLOSED` | 0 | classical trio | — | `6ec00281c55d` |
 | [rh-p5-bridge-14](https://github.com/DavidFox998/rh-p5-bridge-14) | Keystone | Connects P5 prime gaps ↔ RH via 14-step C-chain; uniform interface to full ensemble | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `22bba853bf8b` |
 | [lindelof-hypothesis-143](https://github.com/DavidFox998/lindelof-hypothesis-143) | Lindelöf | μ = 0 for X₀(143): \|ζ(1/2+it)\| = O(t^ε) via S₄ | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `d0897752af48` |
 
 **Entry point for referees:** Start at `rh-p5-bridge-14`. Read `CHAIN.md` for the ensemble SHA, then follow `Towers/RH/Chain/` C01→C22.
+
+*Rows marked "not public" are in the historical chain but are not public repositories as of 2026-10-06; their public workspace is [`riemann-hypothesis-four-routes`](https://github.com/DavidFox998/riemann-hypothesis-four-routes).*
 
 ---
 
@@ -141,6 +146,8 @@ bash scripts/audit.sh .        # if scripts/audit.sh is present
 
 See [`scripts/audit.sh`](scripts/audit.sh) in this repo for the full V1–V5 pipeline.
 
+**CI status is per-job.** The `lean.yml` badge on each repo covers the Lean build only. Ensemble jobs (`relock-chain.yml`, `verify-chain.yml`, `notify-bridge.yml`, `ensemble-links.yml`) are separate workflows with separate statuses — a green Lean badge does not imply they pass. Notification or manifest success is not a fresh proof build.
+
 ---
 
-*Last updated: 2026-08-15 — maintained in `rh-p5-bridge-14` and mirrored to `Certifications`.*
+*Last updated: 2026-10-06 — maintained in `rh-p5-bridge-14` and mirrored to `Certifications`. Counts refreshed: 18 public repos; non-public rows marked.*
