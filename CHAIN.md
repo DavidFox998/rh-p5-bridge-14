@@ -5,6 +5,8 @@ P26-08-23
 **Repos in chain:** 19  
 **Previous chain (12 repos, 2026-08-05):** `c79c94e7676a10b1cfb5afc75b7346b9b5b8589dee9b679db230ba3b8034e6d1`
 
+> **Note (2026-10-06):** This is the historical 2026-08-23 lock covering 19 repos. As of 2026-10-06, 18 repos are public (`brothers-desert-proof` is not public). The lock table and SHA below are unchanged. See [REPOS.md](REPOS.md) for the current manifest.
+
 This file is maintained in `rh-p5-bridge-14` and referenced across all repos in the chain.  
 The chain SHA256 is `SHA256` of the newline-terminated string
 `repo:sha\n` for every repo in **canonical alphabetical order**,
