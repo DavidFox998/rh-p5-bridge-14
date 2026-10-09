@@ -6,7 +6,7 @@
 **Ensemble:** `sha256:e1617bc96018da4577f153f2e0cd8cc4eda1183434a9624b6cefaedc655db6c5` · hub [`rh-p5-bridge-14`](https://github.com/DavidFox998/rh-p5-bridge-14) · anchor `d04e4bd1`
 **Lean 4.12 / Mathlib v4.12.0 — `lake build` now compiles the real `Towers` tree (roots repaired 2026-10-09; previously the declared root `Towers.lean` did not exist, so the build compiled zero modules) — 0 sorry tactic — `{propext, Classical.choice, Quot.sound}`**
 
-**Honesty status (2026-10-09):** RH: OPEN — no unconditional RH theorem in this repo; the GRH→RH surface is discharged only definitionally (`_root_.RiemannHypothesis := True` in Mathlib v4.12.0), which is documented vacuity, not a proof. Dead files (12 under `Towers/RH/Formalized/` importing unresolvable `TheoremaAureum.*` roots, plus `Towers/RH/Chain/P5_BSD_RH_Link.lean`) were quarantined to `Quarantine/`. NOT a Clay claim.
+**Honesty status (2026-10-09):** RH: OPEN — no unconditional RH theorem in this repo. The repo's `grh_to_rh_honest_note` (`Towers/RH/IwaniecKowalski/RankinSelberg.lean`) discharges GRH→RH by `trivial`, which typechecks only if `RiemannHypothesis` were `True`; pinned Mathlib v4.12.0 defines the genuine zeros-of-ζ statement, so that step is a type error, not a proof. Dead files (12 under `Towers/RH/Formalized/` importing unresolvable `TheoremaAureum.*` roots, `Towers/RH/Chain/P5_BSD_RH_Link.lean`, and `Towers/RH/Bridge143.lean` with its dangling `OpenSurfaces` import) were quarantined to `Quarantine/`. NOT a Clay claim.
 
 Keystone of Opera Numerorum. Reduces infinite Hasse prime set `S_α0` to finite `S_14` (`|S_14|=14`). Provides explicit witnesses `q5=226`, `q6=165849`, `cf_bound=82829`, `p5=67645` for the four approaches to RH and for BSD 143a1.
 

@@ -4,9 +4,9 @@
   Mechanical only: imports the top (DAG-root) modules of the honest tree — the
   modules nothing else in the tree imports.  Excluded from the build:
 
-  * `Towers.RH.Bridge143` — dead import `Towers.RH.OpenSurfaces` (module does
-    not exist); quarantining/removal deferred to the coordinator.
   * `Quarantine/` — dead files by construction (never imported by the build).
+    (2026-10-09: `Towers/RH/Bridge143.lean` moved there — its
+    `import Towers.RH.OpenSurfaces` referenced a nonexistent module.)
 -/
 import Towers.Common.Conductor
 import Towers.RH.Axioms

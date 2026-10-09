@@ -19,3 +19,4 @@ as part of the package. Relative structure under `Towers/` is preserved.
 | 2026-10-09 | `Towers/RH/Formalized/Module_21_H4_Invariant.lean` | imports unresolvable `TheoremaAureum.*` roots; dead file |
 | 2026-10-09 | `Towers/RH/Formalized/Sieve_Criterion.lean` | imports unresolvable `TheoremaAureum.*` roots; dead file |
 | 2026-10-09 | `Towers/RH/Chain/P5_BSD_RH_Link.lean` | imports nonexistent modules (`Towers.RH.Chain.P5_HeckeTransfer_14_CLOSED`, `Towers.BSD.MathlibGaps.BostExplicitBound`, `Towers.BSD.HassePrimeSet`) and references unbound identifiers; non-compiling |
+| 2026-10-09 | `Towers/RH/Bridge143.lean` | Dead file: `import Towers.RH.OpenSurfaces` (line 30) references a module that does not exist anywhere in the tree; nothing imports `Towers.RH.Bridge143`, and it was already excluded from the new `Towers.lean` roots. |
