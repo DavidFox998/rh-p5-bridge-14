@@ -1,3 +1,7 @@
+import Mathlib.NumberTheory.ModularForms.Basic
+import Mathlib.AlgebraicGeometry.Scheme
+import Mathlib.RingTheory.Discriminant
+
 /-!
 # C01 — Arakelov Setup for X₀(N)
 
@@ -24,10 +28,6 @@ arakelovSelfIntersection (X₀ 143) = 24 > 0.
 
 ## Sorry count this file: 0
 -/
-
-import Mathlib.NumberTheory.ModularForms.Basic
-import Mathlib.AlgebraicGeometry.Scheme
-import Mathlib.RingTheory.Discriminant
 
 namespace TheoremaAureum
 
