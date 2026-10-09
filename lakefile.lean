@@ -7,11 +7,9 @@ package «rh-p5-bridge-14» where
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "v4.12.0"
 
-require bost_connes from git
-  "https://github.com/DavidFox998/bost-connes" @ "main"
-
-require birch_swinnerton_dyer_143a1 from git
-  "https://github.com/DavidFox998/birch-swinnerton-dyer-143a1" @ "main"
+-- NOTE (roadmap phase0-1, 2026-10-09): the former `require` lines for
+-- `bost_connes` and `birch_swinnerton_dyer_143a1` were dropped — nothing in
+-- Towers/ imports from either package (verified by grep).
 
 lean_lib Towers where
   roots := #[`Towers]

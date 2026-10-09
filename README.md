@@ -4,12 +4,22 @@
 
 **Author: David J. Fox | ORCID: [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)**
 **Ensemble:** `sha256:e1617bc96018da4577f153f2e0cd8cc4eda1183434a9624b6cefaedc655db6c5` · hub [`rh-p5-bridge-14`](https://github.com/DavidFox998/rh-p5-bridge-14) · anchor `d04e4bd1`
-**Lean 4.12 / Mathlib v4.12.0 — `lake build` 1s GREEN — 0 sorry — `{propext, Classical.choice, Quot.sound}`**
+**Lean 4.12 / Mathlib v4.12.0 — `lake build` now compiles the real `Towers` tree (roots repaired 2026-10-09; previously the declared root `Towers.lean` did not exist, so the build compiled zero modules) — 0 sorry tactic — `{propext, Classical.choice, Quot.sound}`**
+
+**Honesty status (2026-10-09):** RH: OPEN — no unconditional RH theorem in this repo; the GRH→RH surface is discharged only definitionally (`_root_.RiemannHypothesis := True` in Mathlib v4.12.0), which is documented vacuity, not a proof. Dead files (12 under `Towers/RH/Formalized/` importing unresolvable `TheoremaAureum.*` roots, plus `Towers/RH/Chain/P5_BSD_RH_Link.lean`) were quarantined to `Quarantine/`. NOT a Clay claim.
 
 Keystone of Opera Numerorum. Reduces infinite Hasse prime set `S_α0` to finite `S_14` (`|S_14|=14`). Provides explicit witnesses `q5=226`, `q6=165849`, `cf_bound=82829`, `p5=67645` for the four approaches to RH and for BSD 143a1.
 
 #print axioms P5_BSD_RH_closure_CLOSED
 -- propext, Classical.choice, Quot.sound
+
+> **NOTE (2026-10-09):** `P5_BSD_RH_closure_CLOSED` and the `P5_BSD_*` theorems
+> below lived in `Towers/RH/Chain/P5_BSD_RH_Link.lean`, which did **not compile**
+> (it imported the nonexistent modules `Towers.RH.Chain.P5_HeckeTransfer_14_CLOSED`,
+> `Towers.BSD.MathlibGaps.BostExplicitBound`, `Towers.BSD.HassePrimeSet` and
+> referenced unbound identifiers). The file was quarantined to
+> `Quarantine/RH/Chain/P5_BSD_RH_Link.lean`. Treat the table as conditional /
+> historical, not machine-checked.
 
 ## Directly tied to P5 — the triad that feeds the keystone
 
@@ -26,7 +36,7 @@ Provides `ArakelovPositivity (X₀ 143)` with `ω²=48/13>0` and `arakelovSelfIn
 **[birch-swinnerton-dyer-143a1](https://github.com/DavidFox998/birch-swinnerton-dyer-143a1) — Birch and Swinnerton-Dyer conjecture for 143a1 — CLOSED**
 Curve `y²+y=x³-x²-x-2`, conductor `143=11×13`, Heegner point `(4,6)`, `L(143a1,1)≠0`, `|Sha|=1`, `|tors|=1`, `R=5882/10000>0`. Verifies `L*·|Sha|·|tors|² = Ω·R·∏c_p`. Reuses as input the same `a_p` table (168 traces) and `h=10` from M2, and `C(S₄)` as explicit regulator height. BSD is a distinct Clay problem from RH.
 
-### P5 Theorems — Now CLOSED
+### P5 Theorems — conditional (source file quarantined; not machine-checked)
 
 | Theorem in this repo | What it proves | Input it reuses |
 |---|---|---|
