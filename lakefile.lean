@@ -13,3 +13,10 @@ require mathlib from git
 
 lean_lib Towers where
   roots := #[`Towers]
+
+-- NOTE (2026-10-10): `TowersExperimental` builds the `Towers/RH/Formalized/`
+-- tree standalone.  It is an alternative formalization with an incompatible
+-- `ArithmeticSurface` (`genus : ℕ`) and MUST NOT be imported by `Towers`.
+-- See `TowersExperimental.lean` for the documented split.
+lean_lib TowersExperimental where
+  roots := #[`TowersExperimental]
