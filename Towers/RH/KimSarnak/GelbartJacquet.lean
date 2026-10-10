@@ -57,13 +57,16 @@ opaque GL2Rep : Type
     Image of the Gelbart-Jacquet symmetric square lift GL₂ → GL₃. -/
 opaque GL3Rep : Type
 
-/-- The GL₂ automorphic representation associated to Γ₀(N) (opaque).
-    Concretely: the product of the L²-cuspidal spectrum of Γ₀(N). -/
-opaque GL2Rep_of_level : ℕ → GL2Rep
+/- The GL₂ automorphic representation associated to Γ₀(N).
+    Concretely: the product of the L²-cuspidal spectrum of Γ₀(N).
+    Explicit variable (was `opaque`; opaque function types over opaque
+    codomains need `Inhabited` instances that would be axioms in disguise). -/
+variable (GL2Rep_of_level : ℕ → GL2Rep)
 
-/-- The symmetric square lift Sym²(π) ∈ GL₃ (opaque).
-    Gelbart-Jacquet 1978: cuspidal π on GL₂ lifts to sym²π on GL₃. -/
-opaque sym2_lift : GL2Rep → GL3Rep
+/- The symmetric square lift Sym²(π) ∈ GL₃.
+    Gelbart-Jacquet 1978: cuspidal π on GL₂ lifts to sym²π on GL₃.
+    Explicit variable (see above). -/
+variable (sym2_lift : GL2Rep → GL3Rep)
 
 /-- L-function of a GL₃ automorphic representation (opaque).
     Langlands L-function; absent from Mathlib v4.12.0. -/
