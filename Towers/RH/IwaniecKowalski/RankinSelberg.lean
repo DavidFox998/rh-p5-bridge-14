@@ -157,16 +157,16 @@ theorem grh_to_rh_descent_scaffold
     IK_Descent_OPEN :=
   fun hGRH => h_descent (h_nonvan hGRH)
 
-/-- **Honest scope note: the current axiom type degenerates to GRH → True.**
+/-- **Honest scope note: GRH → RH descent is an open surface, not a theorem.**
 
-    This theorem proves `grh_to_rh_descent` directly by `trivial`, confirming
-    that the C13 axiom is currently a no-op (since `RiemannHypothesis := True`).
-    We keep the axiom declaration in C13 — rather than using this trivial proof —
-    so that the mathematical gap appears in `#print axioms C13_RH_four_step`.
-
-    Fingerprint: this is the ONLY place in the repo where `trivial` legitimately
-    closes a meaningful-looking goal.  Everywhere else it would signal a vacuity bug. -/
-theorem grh_to_rh_honest_note : GRH_E_143a1 → _root_.RiemannHypothesis :=
-  fun _ => trivial
+    The implication `GRH_E_143a1 → RiemannHypothesis` is not proved here.
+    GRH for the single L-function `L(s, E_143a1)` does not imply Mathlib's
+    `RiemannHypothesis` (every nontrivial zero of `riemannZeta` has real part
+    1/2); closing this unconditionally would be a proof of the Riemann
+    hypothesis.  Tracked as `IK_Descent_OPEN` above and
+    `GRH_to_RH_Descent_143_OPEN` in C13.  (An earlier version of this note
+    used `trivial` when `RiemannHypothesis` was a `True` stub; that no longer
+    typechecks against the genuine predicate.) -/
+def grh_to_rh_OPEN : Prop := GRH_E_143a1 → _root_.RiemannHypothesis
 
 end TheoremaAureum.IwaniecKowalski
