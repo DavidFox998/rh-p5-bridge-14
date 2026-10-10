@@ -290,8 +290,9 @@ theorem bsd_error_lt_1pct : (71 : ℕ) * 100 < 12 * 1000 := by norm_num
 
 theorem Z_X5 : (120 : ℕ) / 2^3 = 15 := by norm_num
 
-theorem M_star_identity : (12 : ℕ) * 15 = 11 * (12 * 15 / 11) + 0 := by norm_num
-  -- Key: 12/11 / 15 = 4/55 (rational arithmetic)
+theorem M_star_identity : (12 : ℚ) * 15 = 11 * (12 * 15 / 11) + 0 := by norm_num
+  -- Key: 12/11 / 15 = 4/55 (rational arithmetic; the ℕ spelling truncates
+  -- 180/11 and is false).
 
 theorem four_over_55 : (4 : ℕ) * 11 = 12 * (4 * 11 / 12) + 8 := by norm_num
   -- Confirms (12/11)/15 = 12/(11*15) = 12/165 = 4/55
