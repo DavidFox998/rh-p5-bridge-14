@@ -77,8 +77,11 @@ opaque newform_143a1_L : ℂ → ℂ
     form needed for the CPS twist input). -/
 opaque DirichChar_143 : Type
 
-/-- The trivial Dirichlet character mod 143 (needed to state Step 2). -/
-opaque trivChar_143 : DirichChar_143
+/- The trivial Dirichlet character mod 143.
+    Explicit variable (was `opaque`; an opaque term of an opaque type needs
+    an `Inhabited` instance that would be an axiom in disguise).
+    Needed to state Step 2. -/
+variable (trivChar_143 : DirichChar_143)
 
 /-- L(s, E_143a1 ⊗ χ): L-function of E_143a1 twisted by a Dirichlet character χ.
     L(s, E ⊗ χ) = Σ_{n≥1} a_n(E) · χ(n) · n^{−s}  for Re(s) > 3/2.
