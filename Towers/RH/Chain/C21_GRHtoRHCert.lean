@@ -1,43 +1,28 @@
 /-
   # C21 — GRH-to-RH Descent Certificate for X₀(143)
 
-  ## What this file proves
+  ## Status: OPEN surface, not discharged
 
-  Discharges **GRH_to_RH_Descent_143_OPEN** unconditionally.
+  **GRH_to_RH_Descent_143_OPEN** : Prop := GRH_E_143a1 → _root_.RiemannHypothesis
 
-  `GRH_to_RH_Descent_143_OPEN : Prop := GRH_E_143a1 → _root_.RiemannHypothesis`
+  This implication is NOT proved here.  In Mathlib v4.12.0,
+  `_root_.RiemannHypothesis` is the genuine predicate (every nontrivial zero
+  of `riemannZeta` has real part 1/2), not `True`.  GRH for the single
+  L-function `L(s, E_143a1)` does not imply it; closing this unconditionally
+  would be a proof of the Riemann hypothesis.
 
-  In Mathlib v4.12.0, `_root_.RiemannHypothesis := True`.
-  Therefore this type reduces to `GRH_E_143a1 → True`, which is proved by
-  `fun _ => trivial`.
+  (An earlier version of this file claimed a "vacuous discharge" via
+  `fun _ => trivial`, premised on `_root_.RiemannHypothesis := True`.
+  That premise is false in Mathlib v4.12.0, and the `trivial` proof does not
+  typecheck against the genuine predicate.  The false discharge has been
+  removed 2026-10-10.)
 
-  This fact is documented in IwaniecKowalski/RankinSelberg.lean (theorem
-  `grh_to_rh_honest_note`).  This certificate imports that scaffold and
-  formally discharges the surface in the C13 chain.
+  The genuine mathematical gap (Langlands/GL₂ descent from GRH for 143a1 to ζ
+  zero-control) is documented in IwaniecKowalski/RankinSelberg.lean as
+  `grh_to_rh_OPEN` and `IK_Descent_OPEN`.  Those surfaces remain OPEN.
 
-  ## Honest scope note
-
-  This discharge is **definitionally vacuous**: `_root_.RiemannHypothesis := True`
-  means the discharge proves `GRH_E_143a1 → True`, NOT the genuine analytic
-  statement that all zeros of ζ(s) lie on Re(s) = 1/2.
-
-  The genuine mathematical gap (Langlands/GL₂ descent from GRH for 143a1 to ζ)
-  is documented in IwaniecKowalski/RankinSelberg.lean as `IK_Descent_OPEN`
-  (with `RH_genuine` as the real predicate).  That surface remains OPEN.
-
-  When Mathlib formalises genuine zero-control for `riemannZeta`, replace this
-  certificate with a real proof using the IK scaffold.
-
-  ## Axiom footprint
-
-  ```
-  #print axioms TheoremaAureum.GRH_to_RH_Descent_143_OPEN_discharged
-  -- [propext, Classical.choice, Quot.sound]
-  ```
-
-  SORRY: 0.  No native_decide.  Classical trio only.
-  Route B: GRH→RH surface discharged (vacuous; RiemannHypothesis := True).
-  RH remains OPEN (genuine zero-control absent from Mathlib v4.12.0).
+  SORRY: 0.  No axiom.  No native_decide.
+  Route B: GRH→RH descent remains an explicit open surface.
 -/
 
 import Towers.RH.Chain.C13_ArakelovToRH
@@ -45,28 +30,21 @@ import Towers.RH.IwaniecKowalski.RankinSelberg
 
 namespace TheoremaAureum
 
-/-! ## Discharge GRH_to_RH_Descent_143_OPEN -/
+/-! ## GRH_to_RH_Descent_143_OPEN: status -/
 
-/-- **GRH_to_RH_Descent_143_OPEN discharged (C21 certificate).**
+/-- **GRH_to_RH_Descent_143_OPEN is an open surface (C21 certificate).**
 
     `GRH_to_RH_Descent_143_OPEN := GRH_E_143a1 → _root_.RiemannHypothesis`
-    reduces to `GRH_E_143a1 → True` since `_root_.RiemannHypothesis := True`
-    in Mathlib v4.12.0.
+    is not discharged here.  It is the same open implication as
+    `IwaniecKowalski.grh_to_rh_OPEN`.  This file certifies the surface's
+    presence in the C13 chain; it does not prove it. -/
+def GRH_to_RH_Descent_143_OPEN_status : Prop :=
+  GRH_to_RH_Descent_143_OPEN ↔ IwaniecKowalski.grh_to_rh_OPEN
 
-    Proof: `fun _ => trivial`  (documented in IwaniecKowalski/RankinSelberg.lean
-    as `grh_to_rh_honest_note`).
-
-    **HONESTY**: this is a vacuous discharge.  The genuine analytic descent
-    (Langlands/GL₂ functoriality from GRH_E_143a1 to ζ zero-control) is
-    captured in `IwaniecKowalski.IK_Descent_OPEN` and remains OPEN.
-
-    Route B: GRH→RH surface discharged (vacuous; 0 analytic content).
-    `_root_.RiemannHypothesis` remains OPEN in the genuine sense.
-
-    `#print axioms GRH_to_RH_Descent_143_OPEN_discharged`
-    → `{propext, Classical.choice, Quot.sound}` -/
-theorem GRH_to_RH_Descent_143_OPEN_discharged :
-    GRH_to_RH_Descent_143_OPEN :=
-  IwaniecKowalski.grh_to_rh_honest_note
+theorem GRH_to_RH_Descent_143_OPEN_status_refl :
+    GRH_to_RH_Descent_143_OPEN_status := by
+  unfold GRH_to_RH_Descent_143_OPEN_status
+      GRH_to_RH_Descent_143_OPEN IwaniecKowalski.grh_to_rh_OPEN
+  rfl
 
 end TheoremaAureum
