@@ -29,8 +29,9 @@ namespace ZLock
 theorem cells_120 : (120 : ℕ) = 120 := rfl
 
 /-- Dodecahedral hub MORNING_STAR_D20: 20 vertices, 30 edges, 12 faces.
-    Euler characteristic V - E + F = 2. -/
-theorem hub_euler : (20 : ℕ) - 30 + 12 = 2 := by norm_num
+    Euler characteristic V - E + F = 2 (integer identity; the ℕ spelling
+    `20 - 30 = 0` truncates and is false). -/
+theorem hub_euler : (20 : ℤ) - 30 + 12 = 2 := by norm_num
 
 /-- 600-cell: 600 vertices, 1200 edges, 720 faces, 120 cells. Euler: 600-1200+720-120=0. -/
 theorem polytope_600_euler : (600 : ℕ) + 720 = 1200 + 120 := by norm_num
