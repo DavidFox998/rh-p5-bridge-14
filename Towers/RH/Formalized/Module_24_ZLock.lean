@@ -29,8 +29,9 @@ namespace ZLock
 theorem cells_120 : (120 : ℕ) = 120 := rfl
 
 /-- Dodecahedral hub MORNING_STAR_D20: 20 vertices, 30 edges, 12 faces.
-    Euler characteristic V - E + F = 2. -/
-theorem hub_euler : (20 : ℕ) - 30 + 12 = 2 := by norm_num
+    Euler characteristic V - E + F = 2 (integer identity; the ℕ spelling
+    `20 - 30 = 0` truncates and is false). -/
+theorem hub_euler : (20 : ℤ) - 30 + 12 = 2 := by norm_num
 
 /-- 600-cell: 600 vertices, 1200 edges, 720 faces, 120 cells. Euler: 600-1200+720-120=0. -/
 theorem polytope_600_euler : (600 : ℕ) + 720 = 1200 + 120 := by norm_num
@@ -63,8 +64,17 @@ theorem z_explicit_g4_borderline : z_explicit 4 = 10 := by decide
 
 -- g=5: Z_explicit = 15 > 10 → H2-fail (matches M8C X_5 certification).
 theorem z_explicit_fail_threshold (g : ℕ) (hg : g ≥ 5) : z_explicit g ≥ 15 := by
-  simp [z_explicit]
-  omega
+  -- `g*(g+1)/2` is quadratic, so `omega` (linear arithmetic) cannot close it.
+  -- For `g ≥ 5` we have `g+1 ≥ 6`, hence `g*(g+1) ≥ 5*6 = 30`, and dividing
+  -- by 2 yields `z_explicit g ≥ 15`.
+  unfold z_explicit
+  -- Goal is `z ≥ 15`, i.e. `15 ≤ g*(g+1)/2`.  `rw` does not match the `≥`
+  -- spelling, so apply the right-to-left direction of the div lemma.
+  apply (Nat.le_div_iff_mul_le (by decide : 0 < 2)).mpr
+  have h6 : 6 ≤ g + 1 := Nat.add_le_add_right hg 1
+  calc
+    15 * 2 = 5 * 6 := by norm_num
+    _ ≤ g * (g + 1) := Nat.mul_le_mul hg h6
 
 -- ─────────────────────────────────────────────────────────────
 -- §3  CM_LIST: 12 class-number-1 levels (M24 certified)
@@ -96,11 +106,13 @@ def rank_H2_fail : ℕ := 12
 
 /-- Theorem 4.1 (Fox 2026): N_routes = |C_120| - rank(H²_fail) = 120 - 12 = 108. -/
 theorem n_routes : (120 : ℕ) - rank_H2_fail = 108 := by
-  simp [rank_H2_fail]
+  unfold rank_H2_fail
+  decide
 
 /-- The H2-fail set partitions the 120 cells: 12 blocked, 108 open. -/
 theorem route_partition : rank_H2_fail + 108 = 120 := by
-  simp [rank_H2_fail]
+  unfold rank_H2_fail
+  decide
 
 -- ─────────────────────────────────────────────────────────────
 -- §5  Genus formula for prime levels (Diamond-Shurman Thm 3.1.1)
@@ -132,7 +144,10 @@ def predict_fail_genera : List ℕ := [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 theorem all_predict_fail_z_gt_10 (g : ℕ) (hg : g ∈ predict_fail_genera) :
     z_explicit g > 10 := by
-  fin_cases hg <;> decide
+  -- `fin_cases` does not split membership in a `List` literal here.
+  simp only [predict_fail_genera, List.mem_cons, List.mem_nil_iff, or_false] at hg
+  rcases hg with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  all_goals decide
 
 -- ─────────────────────────────────────────────────────────────
 -- §6  Z-Lock theorem — conditional form (M24)
@@ -161,7 +176,9 @@ theorem z_lock_from_class1 {entry : ZLockCM N}
 theorem mstar_from_z1 {entry : ZLockCM N}
     (h_z : entry.z_val = 1) :
     12 * entry.z_val = 12 := by
-  rw [h_z]; ring
+  -- `rw` already rewrites the goal to `12 * 1 = 12`, which closes by `rfl`.
+  -- A following `ring` then errors with "no goals to be solved".
+  rw [h_z]
 
 -- ─────────────────────────────────────────────────────────────
 -- §7  PLL chain count (M8L operational)

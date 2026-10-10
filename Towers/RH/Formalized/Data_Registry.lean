@@ -143,16 +143,36 @@ theorem poly49_decimal : (0b11000000 : ℕ) = 192 := by decide
 -- ─────────────────────────────────────────────────────────────
 -- §5  Modular_Sieve_RH_10_8.pdf — 10-layer modular sieve
 -- ─────────────────────────────────────────────────────────────
--- x = 10^8. Total primes checked: 5,761,455. Computation: 5.87 s.
--- Sieve layers L1..L10 apply congruence conditions sequentially.
--- Result: exactly one prime survives all 10 layers.
+-- x = 10^8. Total primes checked: π(10^8) = 5,761,455.
+-- The PDF reports a unique survivor p = 1087441. That claim is false
+-- on both counts that can be checked in ℕ:
+--   • 1087441 = 107 × 10163, so it is not prime;
+--   • layers L7–L9 require p ≡ 1 (mod 13), (mod 17), (mod 19),
+--     and 1087441 has residues 4, 2, 14.
+-- Layer 1 is the Fermat condition 3^p ≡ 3 (mod 7), i.e. p ≡ 1 (mod 6)
+-- (the typeset "3p" is the same abbreviation as in the Lindelöf note).
+-- With p ≡ 1 (mod 16, 10, 13, 17, 19) the system is p ≡ 1 (mod 1007760).
+-- An enumeration, not formalized here, finds 19 such primes ≤ 10^8;
+-- the least is 5038801. There is no unique survivor to substitute.
+-- Module 27 later names 1707889 (10^7, 8 layers) and 551016649
+-- (≤ 10^10, 10 layers) for a different greedy sieve; neither satisfies
+-- this layer list, and 551016649 lies outside the seven-digit window.
 
-/-- The unique survivor prime of the 10-layer modular sieve at x = 10^8. -/
+/-- The integer recorded as the sieve survivor in Modular_Sieve_RH_10_8.pdf.
+    It is composite; see `survivor_recorded_composite`. -/
 def modular_sieve_survivor : ℕ := 1087441
 
-theorem survivor_prime : Nat.Prime modular_sieve_survivor := by decide
+/-- The recorded output factors, so the primality claim is false. -/
+theorem survivor_recorded_composite :
+    modular_sieve_survivor = 107 * 10163 := by decide
 
-/-- The survivor lies in (10^6, 2×10^6), confirming it is a 7-digit prime. -/
+/-- The recorded integer misses layers L7–L9, which demand residue 1. -/
+theorem survivor_fails_later_layers :
+    modular_sieve_survivor % 13 = 4 ∧
+    modular_sieve_survivor % 17 = 2 ∧
+    modular_sieve_survivor % 19 = 14 := by decide
+
+/-- The recorded integer lies in (10^6, 2×10^6). It is a 7-digit composite. -/
 theorem survivor_seven_digits :
     1000000 < modular_sieve_survivor ∧ modular_sieve_survivor < 2000000 := by
   constructor <;> decide
@@ -290,14 +310,17 @@ theorem bsd_error_lt_1pct : (71 : ℕ) * 100 < 12 * 1000 := by norm_num
 
 theorem Z_X5 : (120 : ℕ) / 2^3 = 15 := by norm_num
 
-theorem M_star_identity : (12 : ℕ) * 15 = 11 * (12 * 15 / 11) + 0 := by norm_num
-  -- Key: 12/11 / 15 = 4/55 (rational arithmetic)
+theorem M_star_identity : (12 : ℚ) * 15 = 11 * (12 * 15 / 11) + 0 := by norm_num
+  -- Key: 12/11 / 15 = 4/55 (rational arithmetic; the ℕ spelling truncates
+  -- 180/11 and is false).
 
 theorem four_over_55 : (4 : ℕ) * 11 = 12 * (4 * 11 / 12) + 8 := by norm_num
   -- Confirms (12/11)/15 = 12/(11*15) = 12/165 = 4/55
 
-theorem mstar_X5_exact : (12 : ℕ) * 5 = 55 * 4 / 11 + 0 := by norm_num
-  -- Direct: 12/165 = 4/55 ↔ 12*55 = 4*165 ↔ 660 = 660
+theorem mstar_X5_exact : (12 : ℚ) / 165 = 4 / 55 := by norm_num
+  -- M*(X_5) = (12/11)/15 = 12/165 = 4/55.
+  -- The ℕ spelling (12 * 5 = 55 * 4 / 11) is 60 = 20: dividing
+  -- 12 * 55 = 4 * 165 through by 11 gives 12 * 5 = 4 * 15, not (55 * 4) / 11.
 theorem mstar_fraction_check : (12 : ℕ) * 55 = 4 * 165 := by norm_num
 
 -- § M8D: 120-cell resonator
