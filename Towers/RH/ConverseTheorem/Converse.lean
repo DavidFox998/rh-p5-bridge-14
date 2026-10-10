@@ -239,11 +239,21 @@ theorem langlands_descent_scaffold
 
     Proved: `two_sqrt13_lt_8_bc6` in C14, and `C_S14_143_gt_tau` (C_S14_143 > 2√13). -/
 theorem S4_naive_fails : (1.434 : ℝ) < 2 * Real.sqrt 13 := by
+  -- `linarith` cannot turn `sqrt 9 = 3 < sqrt 13` into a bound on
+  -- `2 * sqrt 13` while a decimal literal is still in the goal.
+  -- Chain the comparisons explicitly: 1.434 < 6 = 2 * 3 = 2 * sqrt 9 < 2 * sqrt 13.
   have h9 : Real.sqrt 9 = 3 := by
     rw [show (9 : ℝ) = 3 ^ 2 from by norm_num]
     exact Real.sqrt_sq (by norm_num)
   have hlt : Real.sqrt 9 < Real.sqrt 13 :=
     Real.sqrt_lt_sqrt (by norm_num) (by norm_num)
-  linarith
+  have h6 : (1.434 : ℝ) < 6 := by norm_num
+  have hmul : (2 : ℝ) * Real.sqrt 9 < 2 * Real.sqrt 13 :=
+    mul_lt_mul_of_pos_left hlt (by norm_num)
+  have heq : (2 : ℝ) * Real.sqrt 9 = 6 := by
+    rw [h9]; norm_num
+  have h6lt : (1.434 : ℝ) < 2 * Real.sqrt 9 := by
+    rw [heq]; exact h6
+  exact lt_trans h6lt hmul
 
 end TheoremaAureum.ConverseTheorem
