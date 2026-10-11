@@ -71,11 +71,12 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 
 ---
 
-## Cluster 4 — Yang–Mills & Navier–Stokes
+## Cluster 4 — Navier–Stokes
+
+> yang-mills-gap delisted 2026-10-10 (private until mass-gap core is fixed).
 
 | Repo | Role | Claim | Lean status | Sorrys | Axioms | Chain | HEAD |
 |------|------|-------|-------------|--------|--------|-------|------|
-| [yang-mills-gap](https://github.com/DavidFox998/yang-mills-gap) | YM gap | SU(3) lattice YM mass gap at β₀ = ln 8; Bessel N=5, w₁ < 1/7 | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `bee05c045ff0` |
 | [navier-stokes](https://github.com/DavidFox998/navier-stokes) | NS regularity | NS global regularity + mass gap for SU(3); energy dissipation bounds | `LEAN_CLOSED` | 0 | classical trio | ⛓ | `ab0e5eccf606` |
 
 ---
