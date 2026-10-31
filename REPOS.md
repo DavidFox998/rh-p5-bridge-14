@@ -3,7 +3,7 @@
 **Author:** David J. Fox · ORCID [0009-0008-1290-6105](https://orcid.org/0009-0008-1290-6105)  
 **Ensemble chain SHA256:** `702d12e6ebf9b203d73bc8a57617ea960e3cc2a31901fc482888fec28ff08825`  
 P26-08-23 chain lock (19 repos — see [CHAIN.md](CHAIN.md))  
-**Total repos in map:** 19 · **Public in map as of 2026-10-06:** 15 · **Private in map:** 4 (the historical Route A–D repositories; the GitHub account holds 18 public repositories total, the remainder outside this map).
+**Total repos in map:** 18 · **Public in map as of 2026-10-06:** 14 · **Private in map:** 4 (the historical Route A–D repositories; the GitHub account holds 18 public repositories total, the remainder outside this map).
 
 ---
 
@@ -103,7 +103,6 @@ All four routes close via the same S₄ = {2, 3, 19, 191} threshold: C(S₄) = 1
 |------|------|----------|------|
 | [opera-sieve](https://github.com/DavidFox998/opera-sieve) | Canonical sieve | Sieve for S(α₀ = 299+π/10); M1–M13 pipeline; Postgres dashboard; CI guard | `43f8b96822e7` |
 | [morningstar-project](https://github.com/DavidFox998/morningstar-project) | Certification | GRH X₀(143) + BSD certification; SORRY=0; Morning Star Project Volume I | `14d94d39ed78` |
-| [Certifications](https://github.com/DavidFox998/Certifications) | Ledger | 664 certified bricks; PDFs; cryptographic Seal (AXIOMS.txt, SORRYS.txt, TIMESTAMP.txt) | `731253f5b336` |
 
 ---
 
@@ -151,4 +150,4 @@ See [`scripts/audit.sh`](scripts/audit.sh) in this repo for the full V1–V5 pip
 
 ---
 
-*Last updated: 2026-10-06 — maintained in `rh-p5-bridge-14` and mirrored to `Certifications`. Counts refreshed: 18 public repos; non-public rows marked.*
+*Last updated: 2026-10-31 — maintained in `rh-p5-bridge-14`. Certifications row removed 2026-10-31 (repository no longer exists). Non-public rows marked.*
