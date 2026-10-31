@@ -117,18 +117,19 @@ FAIL=0
 MISSING=()
 UNREACHABLE=()
 
-# These four answer HTTP 404 to a public repository token. Routes A–D are
-# read from the public workspace riemann-hypothesis-four-routes.
-is_private_route() {
+# These five answer HTTP 404 to a public repository token. Routes A–D are
+# read from the public workspace riemann-hypothesis-four-routes;
+# opera-sieve has been private since 2026-10-06.
+is_private_repo() {
   case "$1" in
-    arakelov-rh-descent|brothers-desert-proof|rh-growth-contradiction|riemann-arakelov-positivity) return 0 ;;
+    arakelov-rh-descent|brothers-desert-proof|rh-growth-contradiction|riemann-arakelov-positivity|opera-sieve) return 0 ;;
     *) return 1 ;;
   esac
 }
 
 for REPO in "${REPOS[@]}"; do
-  if is_private_route "$REPO"; then
-    echo -e "  ${YELLOW}SKIP${RESET}  ${REPO}  (private — not a 404 failure; public workspace riemann-hypothesis-four-routes)"
+  if is_private_repo "$REPO"; then
+    echo -e "  ${YELLOW}SKIP${RESET}  ${REPO}  (private — not a 404 failure)"
     continue
   fi
   if [[ "$REPO" == "$ENSEMBLE_KEYSTONE" ]]; then
